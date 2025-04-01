@@ -21,8 +21,11 @@ export const Post = ({
   isEditable,
   user,
   createdAt,
+  isLoading,
 }: IPostProps) => {
-  const onClickRemove = () => {};
+  if (isLoading) {
+    <div>Loading...</div>;
+  }
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
@@ -33,7 +36,7 @@ export const Post = ({
               <EditIcon />
             </IconButton>
           </a>
-          <IconButton onClick={onClickRemove} color="secondary">
+          <IconButton color="secondary">
             <DeleteIcon />
           </IconButton>
         </div>

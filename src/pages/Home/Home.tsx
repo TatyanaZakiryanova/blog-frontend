@@ -2,8 +2,8 @@ import Grid from '@mui/material/Grid';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 
-import { CommentsBlock } from '../components/CommentsBlock';
-import { Post } from '../components/Post';
+import { CommentsBlock } from '../../components/CommentsBlock';
+import { Post } from '../../components/Post';
 
 export const Home = () => {
   return (
@@ -15,8 +15,9 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid size={8}>
-          {[...Array(5)].map(() => (
+          {[...Array(5)].map((_, index) => (
             <Post
+              key={index}
               _id={1}
               title="React"
               imageUrl=""
@@ -29,6 +30,8 @@ export const Home = () => {
               commentsCount={5}
               tags={['react', 'redux', 'typescript']}
               isFullPost
+              isEditable
+              isLoading
             />
           ))}
         </Grid>

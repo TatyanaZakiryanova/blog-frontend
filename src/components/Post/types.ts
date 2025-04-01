@@ -14,6 +14,6 @@ export interface IPostProps {
   tags: string[];
   children?: React.ReactNode;
   isFullPost: boolean;
-  isLoading?: boolean;
-  isEditable?: boolean;
+  isLoading: boolean;
+  isEditable: boolean;
 }

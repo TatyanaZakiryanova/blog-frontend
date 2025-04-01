@@ -1,6 +1,6 @@
-import { Comment } from '../components/Comment/Comment';
-import { CommentsBlock } from '../components/CommentsBlock/CommentsBlock';
-import { Post } from '../components/Post/Post';
+import { Comment } from '../../components/Comment';
+import { CommentsBlock } from '../../components/CommentsBlock';
+import { Post } from '../../components/Post';
 
 export const FullPost = () => {
   return (
@@ -17,7 +17,9 @@ export const FullPost = () => {
         viewsCount={150}
         commentsCount={5}
         tags={['react', 'redux', 'typescript']}
-        isFullPost
+        isFullPost={true}
+        isEditable
+        isLoading
       >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

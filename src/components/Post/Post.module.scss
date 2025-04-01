@@ -1,4 +1,4 @@
-$blue: #1e88e5;
+$accent: #607d8b;
 
 .root {
   background-color: #fff;
@@ -9,8 +9,8 @@ $blue: #1e88e5;
   margin-bottom: 15px;
 
   &:hover {
-    border: 1px solid $blue;
-    box-shadow: 0 0 0 1px $blue;
+    border: 1px solid $accent;
+    box-shadow: 0 0 0 1px $accent;
 
     .editButtons {
       opacity: 1;
@@ -63,7 +63,7 @@ $blue: #1e88e5;
     color: #000;
 
     &:hover {
-      color: $blue;
+      color: $accent;
     }
   }
 
@@ -151,7 +151,7 @@ $blue: #1e88e5;
   position: absolute;
   right: 15px;
   top: 15px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #fff;
   border-radius: 10px;
   opacity: 0;
   transition: all 0.2s ease-in-out;
