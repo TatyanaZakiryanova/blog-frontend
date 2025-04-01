@@ -1,12 +1,8 @@
-import React from 'react';
-import styles from './SideBlock.module.scss';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
-interface ISideBlockProps {
-  title: string;
-  children: React.ReactNode;
-}
+import styles from './SideBlock.module.scss';
+import { ISideBlockProps } from './types';
 
 export const SideBlock = ({ title, children }: ISideBlockProps) => {
   return (

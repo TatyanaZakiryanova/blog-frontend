@@ -1,4 +1,4 @@
-interface ICommentUser {
+export interface ICommentUser {
   user: {
     fullName: string;
     avatarUrl?: string;

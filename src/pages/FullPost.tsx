@@ -1,5 +1,5 @@
 import { Comment } from '../components/Comment/Comment';
-import { CommentsBlock } from '../components/CommentsBlock';
+import { CommentsBlock } from '../components/CommentsBlock/CommentsBlock';
 import { Post } from '../components/Post/Post';
 
 export const FullPost = () => {

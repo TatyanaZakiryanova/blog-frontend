@@ -1,33 +1,13 @@
-import React from 'react';
-import clsx from 'clsx';
-import IconButton from '@mui/material/IconButton';
+import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import IconButton from '@mui/material/IconButton';
+import clsx from 'clsx';
 
+import { UserInfo } from '../UserInfo';
 import styles from './Post.module.scss';
-import { UserInfo } from '../UserInfo/UserInfo';
-
-interface IPostAuthor {
-  avatarUrl?: string;
-  fullName: string;
-}
-
-interface IPostProps {
-  _id: number;
-  title: string;
-  createdAt: string;
-  imageUrl: string;
-  user: IPostAuthor;
-  viewsCount: number;
-  commentsCount: number;
-  tags: string[];
-  children: React.ReactNode;
-  isFullPost: any;
-  isLoading?: boolean;
-  isEditable?: boolean;
-}
+import { IPostProps } from './types';
 
 export const Post = ({
   _id,

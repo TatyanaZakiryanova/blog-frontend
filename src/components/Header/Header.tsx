@@ -1,7 +1,8 @@
-import Container from '@mui/material/Container';
-import styles from './Header.module.scss';
-import Button from '@mui/material/Button';
 import ArticleIcon from '@mui/icons-material/Article';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+
+import styles from './Header.module.scss';
 
 export const Header = () => {
   const isAuth = false;

@@ -1,10 +1,5 @@
+import { IUserInfo } from './types';
 import styles from './UserInfo.module.scss';
-
-interface IUserInfo {
-  avatarUrl?: string;
-  fullName: string;
-  additionalText: string;
-}
 
 export const UserInfo = ({ avatarUrl, fullName, additionalText }: IUserInfo) => {
   return (

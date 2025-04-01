@@ -1,8 +1,8 @@
-import styles from './Comment.module.scss';
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+
+import styles from './Comment.module.scss';
 
 export const Comment = () => {
   return (

@@ -1,29 +1,17 @@
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
 import React from 'react';
-import { SideBlock } from './SideBlock/SideBlock';
-import Box from '@mui/material/Box';
 
-interface ICommentUser {
-  user: {
-    fullName: string;
-    avatarUrl?: string;
-  };
-  text: string;
-}
+import { SideBlock } from '../SideBlock';
+import { ICommentsBlockProps, ICommentUser } from './types';
 
-interface ICommentsBlock {
-  items: ICommentUser[];
-  children: React.ReactNode;
-  isLoading: boolean;
-}
-
-export const CommentsBlock = ({ items, children, isLoading }: ICommentsBlock) => {
+export const CommentsBlock = ({ items, children, isLoading }: ICommentsBlockProps) => {
   return (
     <SideBlock title="Комментарии">
       <List>
