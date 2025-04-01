@@ -10,7 +10,7 @@ export const FullPost = () => {
         title="React"
         imageUrl=""
         user={{
-          avatarUrl: '',
+          avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
           fullName: 'John',
         }}
         createdAt={'01.04.2025'}

@@ -7,6 +7,7 @@ import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
 import styles from './Post.module.scss';
+import { UserInfo } from '../UserInfo/UserInfo';
 
 interface IPostAuthor {
   avatarUrl?: string;
@@ -38,6 +39,8 @@ export const Post = ({
   children,
   isFullPost,
   isEditable,
+  user,
+  createdAt,
 }: IPostProps) => {
   const onClickRemove = () => {};
 
@@ -65,6 +68,7 @@ export const Post = ({
       )}
 
       <div className={styles.wrapper}>
+        <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
             {isFullPost ? title : <a href={`/posts/${_id}`}>{title}</a>}
