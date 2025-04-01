@@ -12,7 +12,7 @@ export const Header = () => {
       <Container maxWidth="lg">
         <div className={styles.inner}>
           <div className={styles.logo}>
-            <ArticleIcon fontSize="large" />
+            <ArticleIcon fontSize="large" color="primary" />
             MY BLOG
           </div>
 
@@ -22,7 +22,7 @@ export const Header = () => {
                 <a href="/posts/create">
                   <Button variant="contained">Создать пост</Button>
                 </a>
-                <Button variant="contained" color="error">
+                <Button variant="contained" color="secondary">
                   Выйти
                 </Button>
               </>
@@ -32,7 +32,7 @@ export const Header = () => {
                   <Button variant="outlined">Войти</Button>
                 </a>
                 <a href="/register">
-                  <Button variant="contained">Создать аккаунт</Button>
+                  <Button variant="contained">Зарегистрироваться</Button>
                 </a>
               </>
             )}

@@ -12,7 +12,7 @@ export interface IPostProps {
   viewsCount: number;
   commentsCount: number;
   tags: string[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
   isFullPost: boolean;
   isLoading?: boolean;
   isEditable?: boolean;

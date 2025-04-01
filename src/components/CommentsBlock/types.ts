@@ -8,6 +8,6 @@ export interface ICommentUser {
 
 export interface ICommentsBlockProps {
   items: ICommentUser[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
   isLoading: boolean;
 }
