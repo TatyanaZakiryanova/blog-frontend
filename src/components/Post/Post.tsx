@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 
 import { UserInfo } from '../UserInfo';
 import styles from './Post.module.scss';
-import { PostSkeleton } from './Skeleton';
 import { IPostProps } from './types';
 
 export const Post = ({
   _id,
   title,
+  text,
   imageUrl,
   viewsCount,
   commentsCount,
@@ -23,12 +23,8 @@ export const Post = ({
   isEditable,
   user,
   createdAt,
-  isLoading,
+  updatedAt,
 }: IPostProps) => {
-  if (isLoading) {
-    return <PostSkeleton />;
-  }
-
   return (
     <div className={styles.root}>
       {isEditable && (
@@ -59,7 +55,7 @@ export const Post = ({
             {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
           </h2>
 
-          {children && <div className={styles.content}>{children}</div>}
+          <div className={styles.content}>{children || text}</div>
 
           <ul className={styles.tags}>
             {tags.map((name: string) => (

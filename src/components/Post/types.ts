@@ -1,19 +1,7 @@
-export interface IPostAuthor {
-  avatarUrl?: string;
-  fullName: string;
-}
+import { Post } from '../../redux/posts/types';
 
-export interface IPostProps {
-  _id: number;
-  title: string;
-  createdAt: string;
-  imageUrl: string;
-  user: IPostAuthor;
-  viewsCount: number;
-  commentsCount: number;
-  tags: string[];
+export interface IPostProps extends Post {
   children?: React.ReactNode;
   isFullPost: boolean;
-  isLoading: boolean;
   isEditable: boolean;
 }

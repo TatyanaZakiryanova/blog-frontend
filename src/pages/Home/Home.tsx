@@ -4,8 +4,20 @@ import Tabs from '@mui/material/Tabs';
 
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchPosts } from '../../redux/posts/asyncActions';
+import { Status } from '../../redux/posts/types';
+import { PostSkeleton } from '../../components/Post/Skeleton';
 
 export const Home = () => {
+  const dispatch = useAppDispatch();
+  const { posts } = useAppSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
+
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
@@ -15,25 +27,32 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid size={8}>
-          {[...Array(5)].map((_, index) => (
-            <Post
-              key={index}
-              _id={1}
-              title="React"
-              imageUrl="https://mui.com/static/images/avatar/2.jpg"
-              user={{
-                avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-                fullName: 'John',
-              }}
-              createdAt={'01.04.2025'}
-              viewsCount={150}
-              commentsCount={5}
-              tags={['react', 'redux', 'typescript']}
-              isFullPost={false}
-              isEditable
-              isLoading={false}
-            />
-          ))}
+          {posts.status === Status.LOADING ? (
+            [...Array(5)].map((_, index) => <PostSkeleton key={index} />)
+          ) : posts.status === Status.SUCCESS ? (
+            posts.items.map((item) => (
+              <Post
+                key={item._id}
+                _id={item._id}
+                title={item.title}
+                text={item.text}
+                imageUrl={item.imageUrl || ''}
+                user={{
+                  avatarUrl: item.user.avatarUrl || 'https://mui.com/static/images/avatar/2.jpg',
+                  fullName: item.user.fullName,
+                }}
+                createdAt={item.createdAt}
+                updatedAt={item.updatedAt}
+                viewsCount={item.viewsCount}
+                commentsCount={5}
+                tags={item.tags}
+                isFullPost={false}
+                isEditable={false}
+              />
+            ))
+          ) : (
+            <div>Error</div>
+          )}
         </Grid>
 
         <Grid size={4}>
