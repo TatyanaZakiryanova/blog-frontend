@@ -9,13 +9,16 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
 import { PostSkeleton } from '../../components/Post/Skeleton';
+import { fetchTags } from '../../redux/tags/asyncActions';
+import { TagsBlock } from '../../components/TagsBlock/TagsBlock';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
-  const { posts } = useAppSelector((state) => state.posts);
+  const { items, status } = useAppSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchTags());
   }, []);
 
   return (
@@ -27,10 +30,10 @@ export const Home = () => {
 
       <Grid container spacing={4}>
         <Grid size={8}>
-          {posts.status === Status.LOADING ? (
+          {status === Status.LOADING ? (
             [...Array(5)].map((_, index) => <PostSkeleton key={index} />)
-          ) : posts.status === Status.SUCCESS ? (
-            posts.items.map((item) => (
+          ) : status === Status.SUCCESS ? (
+            items.map((item) => (
               <Post
                 key={item._id}
                 _id={item._id}
@@ -56,6 +59,7 @@ export const Home = () => {
         </Grid>
 
         <Grid size={4}>
+          <TagsBlock />
           <CommentsBlock
             items={[
               {

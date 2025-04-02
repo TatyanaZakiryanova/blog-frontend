@@ -1,3 +1,9 @@
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
+}
+
 export interface Post {
   _id: number;
   title: string;
@@ -15,14 +21,6 @@ export interface Post {
 }
 
 export interface PostsState {
-  posts: {
-    items: Post[];
-    status: string;
-  };
-}
-
-export enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
+  items: Post[];
+  status: Status;
 }

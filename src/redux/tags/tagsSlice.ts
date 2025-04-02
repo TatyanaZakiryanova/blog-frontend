@@ -1,31 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PostsState, Status } from './types';
-import { fetchPosts } from './asyncActions';
+import { Status } from '../posts/types';
+import { TagsState } from './types';
+import { fetchTags } from './asyncActions';
 
-const initialState: PostsState = {
+const initialState: TagsState = {
   items: [],
   status: Status.LOADING,
 };
 
-const postsSlice = createSlice({
-  name: 'posts',
+const tagsSlice = createSlice({
+  name: 'tags',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPosts.pending, (state) => {
+      .addCase(fetchTags.pending, (state) => {
         state.status = Status.LOADING;
         state.items = [];
       })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
+      .addCase(fetchTags.fulfilled, (state, action) => {
         state.status = Status.SUCCESS;
         state.items = action.payload;
       })
-      .addCase(fetchPosts.rejected, (state) => {
+      .addCase(fetchTags.rejected, (state) => {
         state.status = Status.ERROR;
         state.items = [];
       });
   },
 });
 
-export default postsSlice.reducer;
+export default tagsSlice.reducer;
