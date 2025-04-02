@@ -4,9 +4,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import IconButton from '@mui/material/IconButton';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 import { UserInfo } from '../UserInfo';
 import styles from './Post.module.scss';
+import { PostSkeleton } from './Skeleton';
 import { IPostProps } from './types';
 
 export const Post = ({
@@ -24,18 +26,18 @@ export const Post = ({
   isLoading,
 }: IPostProps) => {
   if (isLoading) {
-    <div>Loading...</div>;
+    return <PostSkeleton />;
   }
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div className={styles.root}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <a href={`/posts/${_id}/edit`}>
+          <Link to={`/posts/${_id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
-          </a>
+          </Link>
           <IconButton color="secondary">
             <DeleteIcon />
           </IconButton>
@@ -54,7 +56,7 @@ export const Post = ({
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <a href={`/posts/${_id}`}>{title}</a>}
+            {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
           </h2>
 
           {children && <div className={styles.content}>{children}</div>}
@@ -62,7 +64,7 @@ export const Post = ({
           <ul className={styles.tags}>
             {tags.map((name: string) => (
               <li key={name}>
-                <a href={`/tag/${name}`}>#{name}</a>
+                <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             ))}
           </ul>

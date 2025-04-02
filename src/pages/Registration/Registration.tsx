@@ -8,7 +8,7 @@ import styles from './Registration.module.scss';
 export const Registration = () => {
   return (
     <div className={styles.root}>
-      <Typography variant="h6">Создание аккаунта</Typography>
+      <Typography variant="h6">Регистрация</Typography>
       <Avatar sx={{ width: 100, height: 100 }} />
 
       <TextField className={styles.field} label="Имя" fullWidth />

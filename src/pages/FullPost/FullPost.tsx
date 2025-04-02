@@ -8,7 +8,7 @@ export const FullPost = () => {
       <Post
         _id={1}
         title="React"
-        imageUrl=""
+        imageUrl="https://mui.com/static/images/avatar/2.jpg"
         user={{
           avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
           fullName: 'John',
@@ -17,9 +17,9 @@ export const FullPost = () => {
         viewsCount={150}
         commentsCount={5}
         tags={['react', 'redux', 'typescript']}
-        isFullPost={true}
+        isFullPost
         isEditable
-        isLoading
+        isLoading={false}
       >
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

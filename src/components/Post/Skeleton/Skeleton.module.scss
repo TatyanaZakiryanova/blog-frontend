@@ -1,0 +1,29 @@
+.root {
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+
+  .userDetails {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.tags {
+  display: flex;
+
+  span {
+    margin-right: 15px;
+  }
+}

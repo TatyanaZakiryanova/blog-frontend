@@ -20,7 +20,7 @@ export const Home = () => {
               key={index}
               _id={1}
               title="React"
-              imageUrl=""
+              imageUrl="https://mui.com/static/images/avatar/2.jpg"
               user={{
                 avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
                 fullName: 'John',
@@ -29,9 +29,9 @@ export const Home = () => {
               viewsCount={150}
               commentsCount={5}
               tags={['react', 'redux', 'typescript']}
-              isFullPost
+              isFullPost={false}
               isEditable
-              isLoading
+              isLoading={false}
             />
           ))}
         </Grid>

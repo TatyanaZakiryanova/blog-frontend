@@ -2,26 +2,15 @@ $accent: #607d8b;
 
 .root {
   background-color: #fff;
-  position: relative;
   border: 1px solid #dedede;
+  position: relative;
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 15px;
 
   &:hover {
-    border: 1px solid $accent;
-    box-shadow: 0 0 0 1px $accent;
-
     .editButtons {
       opacity: 1;
-    }
-  }
-
-  &Full {
-    &:hover {
-      background-color: #fff;
-      border: 1px solid #dedede;
-      box-shadow: none;
     }
   }
 }
@@ -45,8 +34,8 @@ $accent: #607d8b;
   margin: 30px 0 50px;
 
   p {
-    font-size: 22px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 30px;
   }
 }
 
@@ -69,7 +58,7 @@ $accent: #607d8b;
 
   &Full {
     font-size: 42px;
-    font-weight: 900;
+    font-weight: 800;
   }
 }
 
@@ -111,39 +100,6 @@ $accent: #607d8b;
       font-size: 18px;
       margin-right: 5px;
     }
-  }
-}
-
-.skeleton {
-  background-color: #fff;
-  border: 1px solid #dedede;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 15px;
-
-  &Content {
-    padding: 20px;
-  }
-
-  &Info {
-    margin-left: 50px;
-  }
-}
-
-.skeletonUser {
-  display: flex;
-
-  &Details {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.skeletonTags {
-  display: flex;
-
-  span {
-    margin-right: 15px;
   }
 }
 
