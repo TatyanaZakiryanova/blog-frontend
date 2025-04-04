@@ -6,6 +6,7 @@ import { fetchTags } from './asyncActions';
 const initialState: TagsState = {
   items: [],
   status: Status.LOADING,
+  error: null,
 };
 
 const tagsSlice = createSlice({
@@ -22,9 +23,10 @@ const tagsSlice = createSlice({
         state.status = Status.SUCCESS;
         state.items = action.payload;
       })
-      .addCase(fetchTags.rejected, (state) => {
+      .addCase(fetchTags.rejected, (state, action) => {
         state.status = Status.ERROR;
         state.items = [];
+        state.error = action.error.message || 'Unknown error';
       });
   },
 });

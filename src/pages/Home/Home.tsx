@@ -10,11 +10,12 @@ import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
 import { PostSkeleton } from '../../components/Post/Skeleton';
 import { fetchTags } from '../../redux/tags/asyncActions';
-import { TagsBlock } from '../../components/TagsBlock/TagsBlock';
+import { TagsBlock } from '../../components/TagsBlock';
+import Box from '@mui/material/Box';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
-  const { items, status } = useAppSelector((state) => state.posts);
+  const { items, status, error } = useAppSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -54,7 +55,7 @@ export const Home = () => {
               />
             ))
           ) : (
-            <div>Error</div>
+            <Box sx={{ color: 'red' }}>Ошибка: {error || 'Неизвестная ошибка'}</Box>
           )}
         </Grid>
 

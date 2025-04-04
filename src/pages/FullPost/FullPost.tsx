@@ -1,35 +1,64 @@
+import { useParams } from 'react-router-dom';
 import { Comment } from '../../components/Comment';
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
+import { useEffect, useState } from 'react';
+import { IPostProps } from '../../components/Post/types';
+import axios from '../../axios';
+import Skeleton from '@mui/material/Skeleton';
 
 export const FullPost = () => {
+  const [fullPost, setFullPost] = useState<IPostProps | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await axios.get(`/posts/${id}`);
+        setFullPost(data);
+      } catch (err) {
+        console.warn('Error loading post', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchPost();
+    }
+  }, []);
+
+  if (isLoading || !fullPost) {
+    return (
+      <Skeleton
+        variant="rectangular"
+        sx={{ width: '100%', height: '300px', borderRadius: '6px' }}
+      />
+    );
+  }
+
   return (
     <>
       <Post
-        _id={1}
-        title="React"
-        imageUrl="https://mui.com/static/images/avatar/2.jpg"
+        _id={fullPost._id}
+        text={fullPost.text}
+        title={fullPost.title}
+        imageUrl={fullPost.imageUrl || ''}
         user={{
-          avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-          fullName: 'John',
+          avatarUrl: fullPost.user.avatarUrl || '',
+          fullName: fullPost.user.fullName,
         }}
-        createdAt={'01.04.2025'}
-        viewsCount={150}
-        commentsCount={5}
-        tags={['react', 'redux', 'typescript']}
+        createdAt={fullPost.createdAt}
+        updatedAt={fullPost.updatedAt}
+        viewsCount={fullPost.viewsCount}
+        commentsCount={fullPost.commentsCount}
+        tags={fullPost.tags}
         isFullPost
         isEditable
-        isLoading={false}
-      >
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
-      </Post>
+      />
+
       <CommentsBlock
         items={[
           {

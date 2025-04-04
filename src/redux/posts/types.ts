@@ -23,4 +23,5 @@ export interface Post {
 export interface PostsState {
   items: Post[];
   status: Status;
+  error: null | string;
 }

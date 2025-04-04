@@ -8,12 +8,16 @@ import Skeleton from '@mui/material/Skeleton';
 import { SideBlock } from '../SideBlock';
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
+import Box from '@mui/material/Box';
 
 export const TagsBlock = () => {
-  const { items, status } = useAppSelector((state) => state.tags);
+  const { items, status, error } = useAppSelector((state) => state.tags);
 
   return (
-    <SideBlock title="Тэги">
+    <SideBlock title="Теги">
+      {status === Status.ERROR && (
+        <Box sx={{ color: 'red', padding: 10 }}>Ошибка: {error || 'Неизвестная ошибка'}</Box>
+      )}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (
           <a
