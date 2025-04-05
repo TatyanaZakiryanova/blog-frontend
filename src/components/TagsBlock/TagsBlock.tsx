@@ -16,7 +16,9 @@ export const TagsBlock = () => {
   return (
     <SideBlock title="Теги">
       {status === Status.ERROR && (
-        <Box sx={{ color: 'red', padding: 10 }}>Ошибка: {error || 'Неизвестная ошибка'}</Box>
+        <Box sx={{ padding: 10, textAlign: 'center' }}>
+          Ошибка: {error || 'Ошибка загрузки тегов'}
+        </Box>
       )}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (

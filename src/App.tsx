@@ -7,8 +7,18 @@ import { FullPost } from './pages/FullPost';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
+import { useAppDispatch } from './redux/hooks';
+import { useEffect } from 'react';
+import { fetchAuth } from './redux/auth/asyncActions';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAuth());
+  }, []);
+
   return (
     <>
       <Header />
@@ -18,7 +28,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/posts/:id" element={<FullPost />} />
-          <Route path="/create" element={<CreatePost />} />
+          <Route
+            path="/create"
+            element={
+              <PrivateRoute>
+                <CreatePost />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Container>
     </>

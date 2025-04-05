@@ -55,7 +55,7 @@ export const Home = () => {
               />
             ))
           ) : (
-            <Box sx={{ color: 'red' }}>Ошибка: {error || 'Неизвестная ошибка'}</Box>
+            <Box>Ошибка: {error || 'Ошибка загрузки постов'}</Box>
           )}
         </Grid>
 
