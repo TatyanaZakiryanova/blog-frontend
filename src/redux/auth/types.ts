@@ -4,7 +4,7 @@ export interface AuthUser {
   _id: string;
   fullName: string;
   email: string;
-  avatarUrl: string;
+  avatarUrl?: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -16,8 +16,11 @@ export interface UserData {
   password: string;
 }
 
+export interface UserDataRegister extends UserData {
+  fullName: string;
+}
+
 export interface UserState {
   data: AuthUser | null;
   status: Status;
-  error: null | string;
 }

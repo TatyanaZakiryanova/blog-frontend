@@ -10,6 +10,10 @@ const theme = createTheme({
     },
   },
   typography: {
+    button: {
+      textTransform: 'none',
+      fontWeight: 400,
+    },
     fontFamily: '"Roboto", sans-serif',
   },
 });

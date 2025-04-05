@@ -5,7 +5,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import { ConfirmDialogProps } from './types';
-import Box from '@mui/material/Box';
 
 export const ConfirmDialog = ({
   open,
@@ -16,16 +15,16 @@ export const ConfirmDialog = ({
 }: ConfirmDialogProps) => {
   return (
     <Dialog open={open} onClose={onClose}>
-      <Box sx={{ padding: 5 }}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>{children && <Typography>{children}</Typography>}</DialogContent>
-        <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button onClick={onClose}>Отмена</Button>
-          <Button onClick={onConfirm} color="error" variant="contained">
-            Выйти
-          </Button>
-        </DialogActions>
-      </Box>
+      <DialogTitle>{title}</DialogTitle>
+      <DialogContent sx={{ padding: 10 }}>
+        {children && <Typography>{children}</Typography>}
+      </DialogContent>
+      <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button onClick={onClose}>Отмена</Button>
+        <Button onClick={onConfirm} color="error" variant="contained">
+          Выйти
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 };

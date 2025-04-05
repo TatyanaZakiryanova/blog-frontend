@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Status } from '../posts/types';
 import { UserState } from './types';
-import { fetchAuth, fetchUserData } from './asyncActions';
+import { fetchAuth, fetchRegister, fetchUserData } from './asyncActions';
 
 const initialState: UserState = {
   data: null,
   status: Status.LOADING,
-  error: null,
 };
 
 const authSlice = createSlice({
@@ -22,32 +21,38 @@ const authSlice = createSlice({
       .addCase(fetchUserData.pending, (state) => {
         state.status = Status.LOADING;
         state.data = null;
-        state.error = null;
       })
       .addCase(fetchUserData.fulfilled, (state, action) => {
         state.status = Status.SUCCESS;
         state.data = action.payload;
-        state.error = null;
       })
-      .addCase(fetchUserData.rejected, (state, action) => {
+      .addCase(fetchUserData.rejected, (state) => {
         state.status = Status.ERROR;
         state.data = null;
-        state.error = action.error.message || 'Unknown error';
       })
       .addCase(fetchAuth.pending, (state) => {
         state.status = Status.LOADING;
         state.data = null;
-        state.error = null;
       })
       .addCase(fetchAuth.fulfilled, (state, action) => {
         state.status = Status.SUCCESS;
         state.data = action.payload;
-        state.error = null;
       })
-      .addCase(fetchAuth.rejected, (state, action) => {
+      .addCase(fetchAuth.rejected, (state) => {
         state.status = Status.ERROR;
         state.data = null;
-        state.error = action.error.message || 'Unknown error';
+      })
+      .addCase(fetchRegister.pending, (state) => {
+        state.status = Status.LOADING;
+        state.data = null;
+      })
+      .addCase(fetchRegister.fulfilled, (state, action) => {
+        state.status = Status.SUCCESS;
+        state.data = action.payload;
+      })
+      .addCase(fetchRegister.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.data = null;
       });
   },
 });

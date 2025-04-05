@@ -26,7 +26,7 @@ const tagsSlice = createSlice({
       .addCase(fetchTags.rejected, (state, action) => {
         state.status = Status.ERROR;
         state.items = [];
-        state.error = action.error.message || 'Unknown error';
+        state.error = action.payload as string;
       });
   },
 });

@@ -1,14 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 import { Post } from './types';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { handleAxiosError } from '../../handleAxiosError';
 
-export const fetchPosts = createAsyncThunk<Post[]>('posts/fetchPosts', async () => {
-  try {
-    const response: AxiosResponse = await axios.get<Post[]>('/posts');
-    return response.data;
-  } catch (err) {
-    const error = err as AxiosError;
-    throw new Error(error.message || 'Unknown error');
-  }
-});
+export const fetchPosts = createAsyncThunk<Post[], void>(
+  'posts/fetchPosts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response: AxiosResponse = await axios.get<Post[]>('/posts');
+      return response.data;
+    } catch (err) {
+      const message = handleAxiosError(err);
+      return rejectWithValue(message);
+    }
+  },
+);
