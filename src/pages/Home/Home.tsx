@@ -16,6 +16,7 @@ import Box from '@mui/material/Box';
 export const Home = () => {
   const dispatch = useAppDispatch();
   const { items, status, error } = useAppSelector((state) => state.posts);
+  const userData = useAppSelector((state) => state.auth.data);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -42,6 +43,7 @@ export const Home = () => {
                 text={item.text}
                 imageUrl={item.imageUrl || ''}
                 user={{
+                  _id: item.user._id,
                   avatarUrl: item.user.avatarUrl || 'https://mui.com/static/images/avatar/2.jpg',
                   fullName: item.user.fullName,
                 }}
@@ -51,7 +53,7 @@ export const Home = () => {
                 commentsCount={5}
                 tags={item.tags}
                 isFullPost={false}
-                isEditable={false}
+                isEditable={userData?._id === item.user._id}
               />
             ))
           ) : (

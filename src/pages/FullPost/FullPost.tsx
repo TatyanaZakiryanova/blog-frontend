@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 import { IPostProps } from '../../components/Post/types';
 import axios from '../../axios';
 import Skeleton from '@mui/material/Skeleton';
+import { useAppSelector } from '../../redux/hooks';
 
 export const FullPost = () => {
   const [fullPost, setFullPost] = useState<IPostProps | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const userData = useAppSelector((state) => state.auth.data);
   const { id } = useParams();
 
   useEffect(() => {
@@ -47,6 +49,7 @@ export const FullPost = () => {
         title={fullPost.title}
         imageUrl={fullPost.imageUrl || ''}
         user={{
+          _id: fullPost.user._id,
           avatarUrl: fullPost.user.avatarUrl || '',
           fullName: fullPost.user.fullName,
         }}
@@ -56,7 +59,7 @@ export const FullPost = () => {
         commentsCount={fullPost.commentsCount}
         tags={fullPost.tags}
         isFullPost
-        isEditable
+        isEditable={userData?._id === fullPost.user._id}
       />
 
       <CommentsBlock

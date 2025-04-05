@@ -10,6 +10,7 @@ export interface Post {
   text: string;
   imageUrl?: string;
   user: {
+    _id: string;
     avatarUrl?: string;
     fullName: string;
   };
