@@ -17,3 +17,16 @@ export const fetchPosts = createAsyncThunk<Post[], void>(
     }
   },
 );
+
+export const fetchDeletePosts = createAsyncThunk<number, number, { rejectValue: string }>(
+  'posts/fetchDeletePosts',
+  async (id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`/posts/${id}`);
+      return id;
+    } catch (err) {
+      const message = handleAxiosError(err);
+      return rejectWithValue(message);
+    }
+  },
+);

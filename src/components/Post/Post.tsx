@@ -4,9 +4,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import IconButton from '@mui/material/IconButton';
 import clsx from 'clsx';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../redux/hooks';
+import { fetchDeletePosts } from '../../redux/posts/asyncActions';
+import { ConfirmDialog } from '../ConfirmDialog';
 import { UserInfo } from '../UserInfo';
 import styles from './Post.module.scss';
 import { IPostProps } from './types';
@@ -25,6 +29,15 @@ export const Post = ({
   createdAt,
   updatedAt,
 }: IPostProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
+
+  const onClickRemove = () => {
+    dispatch(fetchDeletePosts(_id));
+    navigate('/');
+  };
+
   return (
     <div className={styles.root}>
       {isEditable && (
@@ -34,7 +47,7 @@ export const Post = ({
               <EditIcon />
             </IconButton>
           </Link>
-          <IconButton color="secondary">
+          <IconButton color="secondary" onClick={() => setConfirmOpen(true)}>
             <DeleteIcon />
           </IconButton>
         </div>
@@ -79,6 +92,17 @@ export const Post = ({
           </ul>
         </div>
       </div>
+      <ConfirmDialog
+        open={confirmOpen}
+        onClose={() => setConfirmOpen(false)}
+        onConfirm={() => {
+          onClickRemove();
+          setConfirmOpen(false);
+        }}
+        confirmButton="Да"
+      >
+        Вы действительно хотите удалить пост?
+      </ConfirmDialog>
     </div>
   );
 };

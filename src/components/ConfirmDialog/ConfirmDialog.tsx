@@ -13,6 +13,7 @@ export const ConfirmDialog = ({
   onConfirm,
   title,
   children,
+  confirmButton,
 }: ConfirmDialogProps) => {
   return (
     <Dialog open={open} onClose={onClose}>
@@ -23,7 +24,7 @@ export const ConfirmDialog = ({
       <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button onClick={onClose}>Отмена</Button>
         <Button onClick={onConfirm} color="error" variant="contained">
-          Выйти
+          {confirmButton}
         </Button>
       </DialogActions>
     </Dialog>

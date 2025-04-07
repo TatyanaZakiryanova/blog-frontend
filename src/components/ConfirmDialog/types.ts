@@ -4,4 +4,5 @@ export interface ConfirmDialogProps {
   onConfirm: () => void;
   title?: string;
   children?: React.ReactNode;
+  confirmButton?: string;
 }

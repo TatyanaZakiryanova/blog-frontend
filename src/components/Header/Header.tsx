@@ -44,6 +44,7 @@ export const Header = () => {
                     handleLogout();
                     setConfirmOpen(false);
                   }}
+                  confirmButton="Выйти"
                 >
                   Вы действительно хотите выйти?
                 </ConfirmDialog>
