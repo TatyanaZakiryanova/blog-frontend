@@ -1,13 +1,13 @@
 import ArticleIcon from '@mui/icons-material/Article';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './Header.module.scss';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { logout } from '../../redux/auth/authSlice';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ConfirmDialog } from '../ConfirmDialog';
+import styles from './Header.module.scss';
 
 export const Header = () => {
   const dispatch = useAppDispatch();

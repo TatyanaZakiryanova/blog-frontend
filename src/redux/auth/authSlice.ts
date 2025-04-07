@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { Status } from '../posts/types';
-import { UserState } from './types';
 import { fetchAuth, fetchRegister, fetchUserData } from './asyncActions';
+import { UserState } from './types';
 
 const initialState: UserState = {
   data: null,

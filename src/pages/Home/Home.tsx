@@ -1,17 +1,17 @@
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import { useEffect } from 'react';
 
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
-import { useEffect } from 'react';
+import { PostSkeleton } from '../../components/Post/Skeleton';
+import { TagsBlock } from '../../components/TagsBlock';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
-import { PostSkeleton } from '../../components/Post/Skeleton';
 import { fetchTags } from '../../redux/tags/asyncActions';
-import { TagsBlock } from '../../components/TagsBlock';
-import Box from '@mui/material/Box';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
@@ -57,7 +57,7 @@ export const Home = () => {
               />
             ))
           ) : (
-            <Box>{`Ошибка: ${error}` || 'Посты не найдены'}</Box>
+            <Box>{`Ошибка: ${error}`}</Box>
           )}
         </Grid>
 

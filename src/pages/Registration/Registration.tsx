@@ -1,17 +1,17 @@
+import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
-import styles from './Registration.module.scss';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import { UserDataRegister } from '../../redux/auth/types';
+import { Navigate } from 'react-router-dom';
+
 import { fetchRegister } from '../../redux/auth/asyncActions';
+import { UserDataRegister } from '../../redux/auth/types';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import styles from './Registration.module.scss';
 
 export const Registration = () => {
   const isAuth = useAppSelector((state) => state.auth.data);

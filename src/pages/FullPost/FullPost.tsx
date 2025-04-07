@@ -1,11 +1,12 @@
+import Skeleton from '@mui/material/Skeleton';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import axios from '../../axios';
 import { Comment } from '../../components/Comment';
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
-import { useEffect, useState } from 'react';
 import { IPostProps } from '../../components/Post/types';
-import axios from '../../axios';
-import Skeleton from '@mui/material/Skeleton';
 import { useAppSelector } from '../../redux/hooks';
 
 export const FullPost = () => {
@@ -47,7 +48,7 @@ export const FullPost = () => {
         _id={fullPost._id}
         text={fullPost.text}
         title={fullPost.title}
-        imageUrl={fullPost.imageUrl || ''}
+        imageUrl={fullPost.imageUrl}
         user={{
           _id: fullPost.user._id,
           avatarUrl: fullPost.user.avatarUrl || '',

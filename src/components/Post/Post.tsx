@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import IconButton from '@mui/material/IconButton';
 import clsx from 'clsx';
+import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 
 import { UserInfo } from '../UserInfo';
@@ -18,7 +19,6 @@ export const Post = ({
   viewsCount,
   commentsCount,
   tags,
-  children,
   isFullPost,
   isEditable,
   user,
@@ -43,7 +43,7 @@ export const Post = ({
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={imageUrl}
+          src={`http://localhost:3000${imageUrl}`}
           alt={title}
         />
       )}
@@ -55,7 +55,9 @@ export const Post = ({
             {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
           </h2>
 
-          <div className={styles.content}>{children || text}</div>
+          <div className={styles.content}>
+            <ReactMarkdown children={text} />
+          </div>
 
           <ul className={styles.tags}>
             {tags.map((name: string) => (

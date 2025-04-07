@@ -1,16 +1,16 @@
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Navigate } from 'react-router-dom';
 
-import styles from './Login.module.scss';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchUserData } from '../../redux/auth/asyncActions';
 import { UserData } from '../../redux/auth/types';
-import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import styles from './Login.module.scss';
 
 export const Login = () => {
   const dispatch = useAppDispatch();

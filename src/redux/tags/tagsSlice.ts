@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { Status } from '../posts/types';
-import { TagsState } from './types';
 import { fetchTags } from './asyncActions';
+import { TagsState } from './types';
 
 const initialState: TagsState = {
   items: [],

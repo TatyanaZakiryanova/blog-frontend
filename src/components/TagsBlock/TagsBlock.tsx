@@ -1,14 +1,15 @@
+import TagIcon from '@mui/icons-material/Tag';
+import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import TagIcon from '@mui/icons-material/Tag';
 import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
-import { SideBlock } from '../SideBlock';
+
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
-import Box from '@mui/material/Box';
+import { SideBlock } from '../SideBlock';
 
 export const TagsBlock = () => {
   const { items, status, error } = useAppSelector((state) => state.tags);

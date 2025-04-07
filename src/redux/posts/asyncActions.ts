@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
-import { Post } from './types';
 import { AxiosResponse } from 'axios';
+
+import axios from '../../axios';
 import { handleAxiosError } from '../../handleAxiosError';
+import { Post } from './types';
 
 export const fetchPosts = createAsyncThunk<Post[], void>(
   'posts/fetchPosts',

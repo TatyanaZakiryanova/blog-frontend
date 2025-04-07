@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PostsState, Status } from './types';
+
 import { fetchPosts } from './asyncActions';
+import { PostsState, Status } from './types';
 
 const initialState: PostsState = {
   items: [],
