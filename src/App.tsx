@@ -26,8 +26,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/posts/:id" element={<FullPost />} />
           <Route path="/posts/create" element={<CreatePost />} />
+          <Route path="/posts/:id/edit" element={<CreatePost />} />
+          <Route path="/posts/:id" element={<FullPost />} />
         </Routes>
       </Container>
     </>

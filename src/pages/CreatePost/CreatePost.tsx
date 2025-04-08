@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
-import { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import SimpleMDE from 'react-simplemde-editor';
 
 import axios from '../../axios';
@@ -16,15 +16,34 @@ import styles from './CreatePost.module.scss';
 
 export const CreatePost = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [text, setText] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [tags, setTags] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const navigate = useNavigate();
-
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`/posts/${id}`)
+        .then(({ data }) => {
+          setTitle(data.title);
+          setText(data.text);
+          setTags(data.tags.join(', '));
+          setImageUrl(data.imageUrl);
+        })
+        .catch((err) => {
+          console.error('Ошибка при получении поста:', err);
+          setOpenAlert(true);
+          setErrorMessage('Ошибка при загрузке поста');
+        });
+    }
+  }, [id]);
 
   const onChange = useCallback((value: string) => {
     setText(value);
@@ -74,9 +93,12 @@ export const CreatePost = () => {
           .map((tag) => tag.trim())
           .filter(Boolean),
       };
-      const { data } = await axios.post('/posts/create', fields);
-      const id = data._id;
-      navigate(`/posts/${id}`);
+      const { data } = id
+        ? await axios.patch(`/posts/${id}`, fields)
+        : await axios.post('/posts/create', fields);
+
+      const postId = id || data._id;
+      navigate(`/posts/${postId}`);
     } catch (err) {
       setOpenAlert(true);
       setErrorMessage('Ошибка при создании поста');
@@ -140,7 +162,7 @@ export const CreatePost = () => {
 
         <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
         <Button onClick={onSubmit} sx={{ marginTop: 2 }} variant="contained">
-          Опубликовать
+          {id ? 'Сохранить изменения' : 'Опубликовать'}
         </Button>
       </Paper>
 
