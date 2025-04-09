@@ -1,4 +1,6 @@
+import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
+import Snackbar from '@mui/material/Snackbar';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -13,6 +15,7 @@ export const FullPost = () => {
   const [fullPost, setFullPost] = useState<IPostProps | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const userData = useAppSelector((state) => state.auth.data);
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,7 +25,8 @@ export const FullPost = () => {
         const { data } = await axios.get(`/posts/${id}`);
         setFullPost(data);
       } catch (err) {
-        console.warn('Error loading post', err);
+        console.error('Ошибка загрузки поста', err);
+        setOpenAlert(true);
       } finally {
         setIsLoading(false);
       }
@@ -84,6 +88,16 @@ export const FullPost = () => {
       >
         <Comment />
       </CommentsBlock>
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={3000}
+        onClose={() => setOpenAlert(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
+          Запись не найдена
+        </Alert>
+      </Snackbar>
     </>
   );
 };

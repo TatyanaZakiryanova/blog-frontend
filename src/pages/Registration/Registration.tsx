@@ -17,7 +17,6 @@ export const Registration = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
   const [openAlert, setOpenAlert] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const {
     register,
@@ -38,10 +37,8 @@ export const Registration = () => {
       const user = resultAction.payload;
       window.localStorage.setItem('token', user.token);
     } else {
-      const errorMessage = resultAction.payload?.message || 'Неизвестная ошибка';
-      setErrorMessage(errorMessage);
       setOpenAlert(true);
-      console.error('Ошибка регистрации:', resultAction.error);
+      console.error('Ошибка регистрации');
     }
   };
 
@@ -107,7 +104,7 @@ export const Registration = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
-          {errorMessage}
+          Ошибка при регистрации
         </Alert>
       </Snackbar>
     </div>

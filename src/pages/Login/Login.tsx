@@ -16,7 +16,6 @@ export const Login = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const {
     register,
@@ -36,10 +35,8 @@ export const Login = () => {
       const user = resultAction.payload;
       window.localStorage.setItem('token', user.token);
     } else {
-      const errorMessage = resultAction.payload?.message || 'Неизвестная ошибка';
-      setErrorMessage(errorMessage);
       setOpenAlert(true);
-      console.error('Ошибка авторизации:', resultAction.error);
+      console.error('Ошибка авторизации');
     }
   };
 
@@ -49,7 +46,7 @@ export const Login = () => {
 
   return (
     <div className={styles.root}>
-      <Typography variant="h6">Вход</Typography>
+      <Typography variant="h6">Вход в аккаунт</Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <TextField
           className={styles.field}
@@ -90,7 +87,7 @@ export const Login = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
-          {errorMessage}
+          Неверный логин или пароль
         </Alert>
       </Snackbar>
     </div>

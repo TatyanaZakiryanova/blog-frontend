@@ -28,21 +28,22 @@ export const CreatePost = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (id) {
-      axios
-        .get(`/posts/${id}`)
-        .then(({ data }) => {
+    const fetchPost = async () => {
+      if (id) {
+        try {
+          const { data } = await axios.get(`/posts/${id}`);
           setTitle(data.title);
           setText(data.text);
           setTags(data.tags.join(', '));
           setImageUrl(data.imageUrl);
-        })
-        .catch((err) => {
-          console.error('Ошибка при получении поста:', err);
+        } catch (err) {
+          console.error('Ошибка загрузки поста:', err);
           setOpenAlert(true);
           setErrorMessage('Ошибка при загрузке поста');
-        });
-    }
+        }
+      }
+    };
+    fetchPost();
   }, [id]);
 
   const onChange = useCallback((value: string) => {
@@ -102,7 +103,7 @@ export const CreatePost = () => {
     } catch (err) {
       setOpenAlert(true);
       setErrorMessage('Ошибка при создании поста');
-      console.error(err);
+      console.error('Ошибка при создании поста:', err);
     }
   };
 

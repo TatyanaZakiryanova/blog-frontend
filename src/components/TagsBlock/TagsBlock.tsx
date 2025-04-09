@@ -12,14 +12,12 @@ import { Status } from '../../redux/posts/types';
 import { SideBlock } from '../SideBlock';
 
 export const TagsBlock = () => {
-  const { items, status, error } = useAppSelector((state) => state.tags);
+  const { items, status } = useAppSelector((state) => state.tags);
 
   return (
     <SideBlock title="Теги">
       {status === Status.ERROR && (
-        <Box sx={{ padding: 10, textAlign: 'center' }}>
-          Ошибка: {error || 'Ошибка загрузки тегов'}
-        </Box>
+        <Box sx={{ padding: 10, textAlign: 'center' }}>Ошибка загрузки тегов</Box>
       )}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (

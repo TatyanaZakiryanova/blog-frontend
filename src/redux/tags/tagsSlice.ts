@@ -7,7 +7,6 @@ import { TagsState } from './types';
 const initialState: TagsState = {
   items: [],
   status: Status.LOADING,
-  error: null,
 };
 
 const tagsSlice = createSlice({
@@ -24,10 +23,9 @@ const tagsSlice = createSlice({
         state.status = Status.SUCCESS;
         state.items = action.payload;
       })
-      .addCase(fetchTags.rejected, (state, action) => {
+      .addCase(fetchTags.rejected, (state) => {
         state.status = Status.ERROR;
         state.items = [];
-        state.error = action.payload as string;
       });
   },
 });

@@ -15,7 +15,7 @@ import { fetchTags } from '../../redux/tags/asyncActions';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
-  const { items, status, error } = useAppSelector((state) => state.posts);
+  const { items, status } = useAppSelector((state) => state.posts);
   const userData = useAppSelector((state) => state.auth.data);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export const Home = () => {
               />
             ))
           ) : (
-            <Box>{`Ошибка: ${error}`}</Box>
+            <Box>Посты не найдены</Box>
           )}
         </Grid>
 
