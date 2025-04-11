@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { useEffect } from 'react';
 
-import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
 import { PostSkeleton } from '../../components/Post/Skeleton';
 import { TagsBlock } from '../../components/TagsBlock';
@@ -50,7 +49,7 @@ export const Home = () => {
                 createdAt={item.createdAt}
                 updatedAt={item.updatedAt}
                 viewsCount={item.viewsCount}
-                commentsCount={5}
+                commentsCount={item.commentsCount}
                 tags={item.tags}
                 isFullPost={false}
                 isEditable={userData?._id === item.user._id}
@@ -63,25 +62,6 @@ export const Home = () => {
 
         <Grid size={4}>
           <TagsBlock />
-          <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: 'User 1',
-                  avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
-                },
-                text: 'Test',
-              },
-              {
-                user: {
-                  fullName: 'User 2',
-                  avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-                },
-                text: 'Test 2',
-              },
-            ]}
-            isLoading={false}
-          />
         </Grid>
       </Grid>
     </>

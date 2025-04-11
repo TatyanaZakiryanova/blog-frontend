@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import axios from '../../axios';
-import { Comment } from '../../components/Comment';
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { Post } from '../../components/Post';
 import { IPostProps } from '../../components/Post/types';
@@ -67,27 +66,8 @@ export const FullPost = () => {
         isEditable={userData?._id === fullPost.user._id}
       />
 
-      <CommentsBlock
-        items={[
-          {
-            user: {
-              fullName: 'User 1',
-              avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
-            },
-            text: 'Test',
-          },
-          {
-            user: {
-              fullName: 'User 2',
-              avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-            },
-            text: 'Test 2',
-          },
-        ]}
-        isLoading={false}
-      >
-        <Comment />
-      </CommentsBlock>
+      <CommentsBlock postId={fullPost._id} />
+
       <Snackbar
         open={openAlert}
         autoHideDuration={3000}

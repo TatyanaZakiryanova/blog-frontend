@@ -1,5 +1,7 @@
 export interface ICommentUser {
+  _id: string;
   user: {
+    _id: string;
     fullName: string;
     avatarUrl?: string;
   };
@@ -7,7 +9,5 @@ export interface ICommentUser {
 }
 
 export interface ICommentsBlockProps {
-  items: ICommentUser[];
-  children?: React.ReactNode;
-  isLoading: boolean;
+  postId: string;
 }

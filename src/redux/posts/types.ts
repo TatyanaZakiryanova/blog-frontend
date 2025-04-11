@@ -5,7 +5,7 @@ export enum Status {
 }
 
 export interface Post {
-  _id: number;
+  _id: string;
   title: string;
   text: string;
   imageUrl?: string;

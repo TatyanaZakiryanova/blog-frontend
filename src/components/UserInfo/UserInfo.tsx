@@ -4,7 +4,11 @@ import styles from './UserInfo.module.scss';
 export const UserInfo = ({ avatarUrl, fullName, createdAt, updatedAt }: IUserInfo) => {
   return (
     <div className={styles.root}>
-      <img className={styles.avatar} src={avatarUrl || '/noavatar.png'} alt={fullName} />
+      <img
+        className={styles.avatar}
+        src={avatarUrl || 'https://mui.com/static/images/avatar/1.jpg'}
+        alt={fullName}
+      />
       <div className={styles.userDetails}>
         <span className={styles.userName}>{fullName}</span>
         <span className={styles.additional}>{new Date(createdAt).toLocaleString()}</span>

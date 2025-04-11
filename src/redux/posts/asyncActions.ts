@@ -9,7 +9,7 @@ export const fetchPosts = createAsyncThunk<Post[], void>('posts/fetchPosts', asy
   return response.data;
 });
 
-export const fetchDeletePosts = createAsyncThunk<number, number>(
+export const fetchDeletePosts = createAsyncThunk<string, string>(
   'posts/fetchDeletePosts',
   async (id) => {
     await axios.delete(`/posts/${id}`);
