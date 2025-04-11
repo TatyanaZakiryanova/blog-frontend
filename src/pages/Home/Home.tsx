@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Post } from '../../components/Post';
 import { PostSkeleton } from '../../components/Post/Skeleton';
@@ -11,20 +11,29 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
 import { fetchTags } from '../../redux/tags/asyncActions';
+import { useParams } from 'react-router-dom';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
   const { items, status } = useAppSelector((state) => state.posts);
   const userData = useAppSelector((state) => state.auth.data);
+  const [tabIndex, setTabIndex] = useState<number>(0);
+  const { tag } = useParams();
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    const sortType = tabIndex === 1 ? 'popular' : undefined;
+    dispatch(fetchPosts({ sort: sortType, tag }));
     dispatch(fetchTags());
-  }, []);
+  }, [tabIndex, tag]);
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
+      <Tabs
+        style={{ marginBottom: 15 }}
+        value={tabIndex}
+        onChange={(_, newValue) => setTabIndex(newValue)}
+        aria-label="basic tabs example"
+      >
         <Tab label="Новые" />
         <Tab label="Популярные" />
       </Tabs>
@@ -59,7 +68,6 @@ export const Home = () => {
             <Box>Посты не найдены</Box>
           )}
         </Grid>
-
         <Grid size={4}>
           <TagsBlock />
         </Grid>

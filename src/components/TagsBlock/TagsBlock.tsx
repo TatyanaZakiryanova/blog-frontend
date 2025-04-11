@@ -10,6 +10,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
 import { SideBlock } from '../SideBlock';
+import { Link } from 'react-router-dom';
 
 export const TagsBlock = () => {
   const { items, status } = useAppSelector((state) => state.tags);
@@ -21,10 +22,10 @@ export const TagsBlock = () => {
       )}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (
-          <a
+          <Link
             key={index}
             style={{ textDecoration: 'none', color: 'black' }}
-            href={status === Status.LOADING ? '#' : `/tags/${name}`}
+            to={status === Status.LOADING ? '#' : `/tag/${name}`}
           >
             <ListItem disablePadding>
               <ListItemButton>
@@ -38,7 +39,7 @@ export const TagsBlock = () => {
                 )}
               </ListItemButton>
             </ListItem>
-          </a>
+          </Link>
         ))}
       </List>
     </SideBlock>

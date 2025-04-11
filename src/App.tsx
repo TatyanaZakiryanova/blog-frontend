@@ -29,6 +29,7 @@ function App() {
           <Route path="/posts/create" element={<CreatePost />} />
           <Route path="/posts/:id/edit" element={<CreatePost />} />
           <Route path="/posts/:id" element={<FullPost />} />
+          <Route path="/tag/:tag" element={<Home />} />
         </Routes>
       </Container>
     </>

@@ -10,6 +10,7 @@ import styles from './CreateComment.module.scss';
 
 export const CreateComment = ({ postId }: { postId: string }) => {
   const [newComment, setNewComment] = useState<string>('');
+
   const userData = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
 
@@ -34,25 +35,28 @@ export const CreateComment = ({ postId }: { postId: string }) => {
 
   return (
     <div className={styles.root}>
-      <Avatar
-        classes={{ root: styles.avatar }}
-        src={userData?.avatarUrl || 'https://mui.com/static/images/avatar/1.jpg'}
-      />
-      <div className={styles.form}>
-        <TextField
-          label="Написать комментарий"
-          variant="outlined"
-          maxRows={10}
-          multiline
-          fullWidth
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <Button variant="contained" onClick={handleAddComment} disabled={!newComment}>
-          Отправить
-        </Button>
-      </div>
+      {userData ? (
+        <>
+          <Avatar classes={{ root: styles.avatar }} src={userData?.avatarUrl} />
+          <div className={styles.form}>
+            <TextField
+              label="Написать комментарий"
+              variant="outlined"
+              maxRows={10}
+              multiline
+              fullWidth
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <Button variant="contained" onClick={handleAddComment} disabled={!newComment}>
+              Отправить
+            </Button>
+          </div>
+        </>
+      ) : (
+        'Войдите, чтобы оставить комментарий.'
+      )}
     </div>
   );
 };
