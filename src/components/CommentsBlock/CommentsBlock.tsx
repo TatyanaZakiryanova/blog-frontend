@@ -48,7 +48,7 @@ export const CommentsBlock = ({ postId }: ICommentsBlockProps) => {
                   {status === Status.LOADING ? (
                     <Skeleton variant="circular" width={40} height={40} />
                   ) : (
-                    <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                    <Avatar src={obj.user.avatarUrl} alt={obj.user.fullName} />
                   )}
                 </ListItemAvatar>
 

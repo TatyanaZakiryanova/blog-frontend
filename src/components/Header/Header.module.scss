@@ -8,6 +8,14 @@
 .inner {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 430px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 
 .logo {
@@ -23,7 +31,19 @@
 }
 
 .buttons {
-  button {
-    margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  @media (max-width: 430px) {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+
+    a,
+    button {
+      width: 100%;
+    }
   }
 }

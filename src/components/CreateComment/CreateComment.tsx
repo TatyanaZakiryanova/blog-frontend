@@ -1,4 +1,5 @@
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
@@ -37,7 +38,10 @@ export const CreateComment = ({ postId }: { postId: string }) => {
     <div className={styles.root}>
       {userData ? (
         <>
-          <Avatar classes={{ root: styles.avatar }} src={userData?.avatarUrl} />
+          <div className={styles.user}>
+            <Avatar src={userData.avatarUrl} alt={userData.fullName} />
+            <Box sx={{ fontSize: '12px' }}>{userData.fullName}</Box>
+          </div>
           <div className={styles.form}>
             <TextField
               label="Написать комментарий"

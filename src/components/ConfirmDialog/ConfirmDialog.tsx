@@ -16,9 +16,9 @@ export const ConfirmDialog = ({
   confirmButton,
 }: ConfirmDialogProps) => {
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} sx={{ textAlign: 'center' }}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent sx={{ padding: 10 }}>
+      <DialogContent sx={{ padding: 8 }}>
         {children && <Typography>{children}</Typography>}
       </DialogContent>
       <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>

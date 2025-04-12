@@ -25,7 +25,7 @@ export const Header = () => {
         <div className={styles.inner}>
           <Link className={styles.logo} to="/">
             <ArticleIcon fontSize="large" color="primary" />
-            <h1 className={styles.title}>MY BLOG</h1>
+            <h1 className={styles.title}>IT BLOG</h1>
           </Link>
 
           <div className={styles.buttons}>

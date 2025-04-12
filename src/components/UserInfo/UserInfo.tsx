@@ -1,4 +1,5 @@
 import Avatar from '@mui/material/Avatar';
+
 import { IUserInfo } from './types';
 import styles from './UserInfo.module.scss';
 

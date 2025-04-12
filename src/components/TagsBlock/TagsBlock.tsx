@@ -6,11 +6,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
+import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
 import { SideBlock } from '../SideBlock';
-import { Link } from 'react-router-dom';
 
 export const TagsBlock = () => {
   const { items, status } = useAppSelector((state) => state.tags);

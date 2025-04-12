@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Post } from '../../components/Post';
 import { PostSkeleton } from '../../components/Post/Skeleton';
@@ -11,7 +12,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
 import { fetchTags } from '../../redux/tags/asyncActions';
-import { useParams } from 'react-router-dom';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export const Home = () => {
   return (
     <>
       <Tabs
-        style={{ marginBottom: 15 }}
+        sx={{ marginBottom: '15px' }}
         value={tabIndex}
         onChange={(_, newValue) => setTabIndex(newValue)}
         aria-label="basic tabs example"
@@ -39,7 +39,7 @@ export const Home = () => {
       </Tabs>
 
       <Grid container spacing={4}>
-        <Grid size={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           {status === Status.LOADING ? (
             [...Array(5)].map((_, index) => <PostSkeleton key={index} />)
           ) : status === Status.SUCCESS ? (
@@ -52,7 +52,7 @@ export const Home = () => {
                 imageUrl={item.imageUrl || ''}
                 user={{
                   _id: item.user._id,
-                  avatarUrl: item.user.avatarUrl || 'https://mui.com/static/images/avatar/2.jpg',
+                  avatarUrl: item.user.avatarUrl,
                   fullName: item.user.fullName,
                 }}
                 createdAt={item.createdAt}
@@ -68,7 +68,7 @@ export const Home = () => {
             <Box>Посты не найдены</Box>
           )}
         </Grid>
-        <Grid size={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <TagsBlock />
         </Grid>
       </Grid>
