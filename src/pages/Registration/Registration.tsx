@@ -71,6 +71,7 @@ export const Registration = () => {
           fullWidth
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
+          autoComplete="email"
           {...register('email', {
             required: 'Введите почту',
             pattern: {
@@ -85,6 +86,8 @@ export const Registration = () => {
           fullWidth
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
+          type="password"
+          autoComplete="current-password"
           {...register('password', {
             required: 'Введите пароль',
             minLength: {
