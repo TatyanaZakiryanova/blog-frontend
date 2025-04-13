@@ -131,11 +131,7 @@ export const CreatePost = () => {
 
           {imageUrl && (
             <>
-              <img
-                className={styles.image}
-                src={`http://localhost:3000${imageUrl}`}
-                alt="Uploaded image"
-              />
+              <img className={styles.image} src={imageUrl} alt="Uploaded image" />
               <Button variant="contained" color="error" onClick={() => setImageUrl('')}>
                 Удалить
               </Button>
