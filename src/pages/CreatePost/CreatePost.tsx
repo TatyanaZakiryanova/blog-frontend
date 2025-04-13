@@ -96,7 +96,7 @@ export const CreatePost = () => {
       };
       const { data } = id
         ? await axios.patch(`/posts/${id}`, fields)
-        : await axios.post('/posts/create', fields);
+        : await axios.post('/posts', fields);
 
       const postId = id || data._id;
       navigate(`/posts/${postId}`);
