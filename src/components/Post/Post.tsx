@@ -86,8 +86,12 @@ export const Post = ({
               <span>{viewsCount}</span>
             </li>
             <li>
-              <CommentIcon />
-              <span>{commentsCount}</span>
+              <Link to={`/posts/${_id}`}>
+                <div className={styles.commentIcon}>
+                  <CommentIcon />
+                  <span>{commentsCount}</span>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>

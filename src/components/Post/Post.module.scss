@@ -101,6 +101,11 @@ $accent: #607d8b;
       margin-right: 5px;
     }
   }
+
+  .commentIcon {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .editButtons {

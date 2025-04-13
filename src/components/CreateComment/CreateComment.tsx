@@ -23,7 +23,7 @@ export const CreateComment = ({ postId }: { postId: string }) => {
       dispatch(addComment({ ...data, user: userData }));
       setNewComment('');
     } catch (err) {
-      console.log('Ошибка при создании комментария', err);
+      console.error('Ошибка при создании комментария', err);
     }
   };
 
