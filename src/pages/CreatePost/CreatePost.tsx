@@ -1,7 +1,6 @@
 import 'easymde/dist/easymde.min.css';
 
 import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Snackbar from '@mui/material/Snackbar';
@@ -112,9 +111,9 @@ export const CreatePost = () => {
   }
 
   return (
-    <>
+    <div>
       <Paper sx={{ padding: 5 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <div className={styles.root}>
           {!imageUrl && (
             <>
               <Button
@@ -155,7 +154,7 @@ export const CreatePost = () => {
             sx={{ marginBottom: 3 }}
             fullWidth
           />
-        </Box>
+        </div>
 
         <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
         <Button onClick={onSubmit} sx={{ marginTop: 2 }} variant="contained">
@@ -173,6 +172,6 @@ export const CreatePost = () => {
           {errorMessage}
         </Alert>
       </Snackbar>
-    </>
+    </div>
   );
 };

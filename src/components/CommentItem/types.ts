@@ -1,6 +1,6 @@
 import { ICommentUser } from '../CommentsBlock/types';
 
-export interface CommentItemProps {
+export interface ICommentItemProps {
   isLoading: boolean;
   isEditing: boolean;
   comment: ICommentUser;

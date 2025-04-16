@@ -1,4 +1,4 @@
-export interface ConfirmDialogProps {
+export interface IConfirmDialogProps {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;

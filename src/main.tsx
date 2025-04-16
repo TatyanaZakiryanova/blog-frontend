@@ -13,8 +13,8 @@ import theme from './theme.ts';
 
 createRoot(document.getElementById('root')!).render(
   <React.Fragment>
-    <CssBaseline />
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Provider store={store}>
         <BrowserRouter>
           <App />

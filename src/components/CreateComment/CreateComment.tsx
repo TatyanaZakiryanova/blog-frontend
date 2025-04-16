@@ -1,5 +1,4 @@
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
@@ -8,8 +7,9 @@ import axios from '../../axios';
 import { addComment } from '../../redux/comments/commentsSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import styles from './CreateComment.module.scss';
+import { ICreateCommentProps } from './types';
 
-export const CreateComment = ({ postId }: { postId: string }) => {
+export const CreateComment = ({ postId }: ICreateCommentProps) => {
   const [newComment, setNewComment] = useState<string>('');
 
   const userData = useAppSelector((state) => state.auth.data);
@@ -40,7 +40,7 @@ export const CreateComment = ({ postId }: { postId: string }) => {
         <>
           <div className={styles.user}>
             <Avatar src={userData.avatarUrl} alt={userData.fullName} />
-            <Box sx={{ fontSize: '12px' }}>{userData.fullName}</Box>
+            <div className={styles.userName}>{userData.fullName}</div>
           </div>
           <div className={styles.form}>
             <TextField

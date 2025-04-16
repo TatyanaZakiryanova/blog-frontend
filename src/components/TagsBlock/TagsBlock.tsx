@@ -1,5 +1,4 @@
 import TagIcon from '@mui/icons-material/Tag';
-import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -11,20 +10,19 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
 import { SideBlock } from '../SideBlock';
+import styles from './TagsBlock.module.scss';
 
 export const TagsBlock = () => {
   const { items, status } = useAppSelector((state) => state.tags);
 
   return (
     <SideBlock title="Теги">
-      {status === Status.ERROR && (
-        <Box sx={{ padding: 10, textAlign: 'center' }}>Ошибка загрузки тегов</Box>
-      )}
+      {status === Status.ERROR && <div className={styles.error}>Ошибка загрузки тегов</div>}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (
           <Link
             key={index}
-            style={{ textDecoration: 'none', color: 'black' }}
+            className={styles.link}
             to={status === Status.LOADING ? '#' : `/tag/${name}`}
           >
             <ListItem disablePadding>

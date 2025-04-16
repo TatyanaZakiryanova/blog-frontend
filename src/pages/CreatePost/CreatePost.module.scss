@@ -1,3 +1,9 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .title {
   input {
     font-size: 36px;

@@ -1,7 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
@@ -10,7 +9,8 @@ import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { CommentItemProps } from './types';
+import styles from './CommentItem.module.scss';
+import { ICommentItemProps } from './types';
 
 export const CommentItem = ({
   isLoading,
@@ -23,9 +23,9 @@ export const CommentItem = ({
   onCancelEdit,
   onDelete,
   onChangeText,
-}: CommentItemProps) => {
+}: ICommentItemProps) => {
   return (
-    <ListItem alignItems="flex-start" sx={{ alignItems: 'flex-start' }}>
+    <ListItem className={styles.root}>
       <ListItemAvatar>
         {isLoading ? (
           <Skeleton variant="circular" width={40} height={40} />
@@ -35,52 +35,45 @@ export const CommentItem = ({
       </ListItemAvatar>
 
       {isLoading ? (
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={styles.skeleton}>
           <Skeleton variant="text" height={25} width={120} />
           <Skeleton variant="text" height={20} width={230} />
-        </Box>
+        </div>
       ) : isEditing ? (
-        <Box>
+        <div>
           <TextField
             fullWidth
             multiline
             value={editedText}
             onChange={(e) => onChangeText(e.target.value)}
           />
-          <Box sx={{ mt: 1, display: 'flex', gap: 1 }}>
+          <div className={styles.editButtons}>
             <Button size="small" onClick={onSaveEdit}>
               Сохранить
             </Button>
             <Button size="small" onClick={onCancelEdit}>
               Отмена
             </Button>
-          </Box>
-        </Box>
+          </div>
+        </div>
       ) : (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            width: '100%',
-          }}
-        >
-          <Box>
+        <div className={styles.comment}>
+          <div>
             <Typography variant="subtitle2">{comment.user.fullName}</Typography>
             <Typography variant="body2">{comment.text}</Typography>
-          </Box>
+          </div>
 
           {userId === comment.user._id && (
-            <Box sx={{ display: 'flex', gap: '8px' }}>
+            <div className={styles.commentButtons}>
               <IconButton onClick={() => onEditClick(comment._id, comment.text)}>
                 <EditIcon />
               </IconButton>
               <IconButton onClick={() => onDelete(comment._id)}>
                 <DeleteIcon />
               </IconButton>
-            </Box>
+            </div>
           )}
-        </Box>
+        </div>
       )}
     </ListItem>
   );
