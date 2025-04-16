@@ -5,7 +5,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 
-import styles from './ConfirmDialog.module.scss';
 import { IConfirmDialogProps } from './types';
 
 export const ConfirmDialog = ({
@@ -17,12 +16,12 @@ export const ConfirmDialog = ({
   confirmButton,
 }: IConfirmDialogProps) => {
   return (
-    <Dialog open={open} onClose={onClose} className={styles.root}>
+    <Dialog open={open} onClose={onClose} sx={{ textAlign: 'center' }}>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent className={styles.content}>
+      <DialogContent sx={{ padding: 8 }}>
         {children && <Typography>{children}</Typography>}
       </DialogContent>
-      <DialogActions className={styles.actions}>
+      <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button onClick={onClose}>Отмена</Button>
         <Button onClick={onConfirm} color="error" variant="contained">
           {confirmButton}
