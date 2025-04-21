@@ -138,7 +138,7 @@ export const CreatePost = () => {
           )}
 
           <TextField
-            classes={{ root: styles.title }}
+            className={styles.title}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             variant="standard"
@@ -146,7 +146,7 @@ export const CreatePost = () => {
             fullWidth
           />
           <TextField
-            classes={{ root: styles.tags }}
+            className={styles.tags}
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             variant="standard"

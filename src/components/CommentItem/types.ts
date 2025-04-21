@@ -1,4 +1,4 @@
-import { ICommentUser } from '../CommentsBlock/types';
+import { ICommentUser } from '../Comments/types';
 
 export interface ICommentItemProps {
   isLoading: boolean;

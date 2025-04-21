@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import axios from '../../axios';
-import { CommentsBlock } from '../../components/CommentsBlock';
+import { Comments } from '../../components/Comments';
 import { Post } from '../../components/Post';
 import { IPostProps } from '../../components/Post/types';
 import { useAppSelector } from '../../redux/hooks';
@@ -66,7 +66,7 @@ export const FullPost = () => {
         isEditable={userData?._id === fullPost.user._id}
       />
 
-      <CommentsBlock postId={fullPost._id} />
+      <Comments postId={fullPost._id} />
 
       <Snackbar
         open={openAlert}

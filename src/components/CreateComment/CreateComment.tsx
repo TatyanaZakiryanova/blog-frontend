@@ -11,7 +11,6 @@ import { ICreateCommentProps } from './types';
 
 export const CreateComment = ({ postId }: ICreateCommentProps) => {
   const [newComment, setNewComment] = useState<string>('');
-
   const userData = useAppSelector((state) => state.auth.data);
   const dispatch = useAppDispatch();
 

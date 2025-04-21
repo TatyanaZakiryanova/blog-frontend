@@ -9,10 +9,10 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
 import { CommentItem } from '../CommentItem';
 import { CreateComment } from '../CreateComment';
-import { SideBlock } from '../SideBlock';
-import { ICommentsBlockProps, ICommentUser } from './types';
+import { SideBlock } from '../UI/SideBlock';
+import { ICommentsProps, ICommentUser } from './types';
 
-export const CommentsBlock = ({ postId }: ICommentsBlockProps) => {
+export const Comments = ({ postId }: ICommentsProps) => {
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
   const [editedText, setEditedText] = useState<string>('');
   const { items, status } = useAppSelector((state) => state.comments);
@@ -58,7 +58,7 @@ export const CommentsBlock = ({ postId }: ICommentsBlockProps) => {
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map(
           (obj: ICommentUser, index: number) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={obj?._id || `skeleton-${index}`}>
               <CommentItem
                 isLoading={status === Status.LOADING}
                 isEditing={editingCommentId === obj?._id}
@@ -71,7 +71,6 @@ export const CommentsBlock = ({ postId }: ICommentsBlockProps) => {
                 onDelete={handleRemoveComment}
                 onChangeText={setEditedText}
               />
-
               <Divider variant="inset" component="li" />
             </React.Fragment>
           ),

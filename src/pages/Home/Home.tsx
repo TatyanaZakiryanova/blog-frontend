@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { Post } from '../../components/Post';
 import { PostSkeleton } from '../../components/Post/Skeleton';
-import { TagsBlock } from '../../components/TagsBlock';
+import { Tags } from '../../components/Tags';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/posts/asyncActions';
 import { Status } from '../../redux/posts/types';
@@ -41,7 +41,7 @@ export const Home = () => {
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, md: 8 }}>
           {status === Status.LOADING ? (
-            [...Array(5)].map((_, index) => <PostSkeleton key={index} />)
+            [...Array(5)].map((_, index) => <PostSkeleton key={`skeleton-${index}`} />)
           ) : status === Status.SUCCESS ? (
             items.map((item) => (
               <Post
@@ -69,7 +69,7 @@ export const Home = () => {
           )}
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
-          <TagsBlock />
+          <Tags />
         </Grid>
       </Grid>
     </>

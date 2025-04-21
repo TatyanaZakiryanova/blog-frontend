@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../redux/hooks';
 import { Status } from '../../redux/posts/types';
-import { SideBlock } from '../SideBlock';
-import styles from './TagsBlock.module.scss';
+import { SideBlock } from '../UI/SideBlock';
+import styles from './Tags.module.scss';
 
-export const TagsBlock = () => {
+export const Tags = () => {
   const { items, status } = useAppSelector((state) => state.tags);
 
   return (

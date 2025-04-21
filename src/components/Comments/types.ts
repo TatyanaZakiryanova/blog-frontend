@@ -8,6 +8,6 @@ export interface ICommentUser {
   text: string;
 }
 
-export interface ICommentsBlockProps {
+export interface ICommentsProps {
   postId: string;
 }

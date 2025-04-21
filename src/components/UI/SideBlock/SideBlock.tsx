@@ -6,7 +6,7 @@ import { ISideBlockProps } from './types';
 export const SideBlock = ({ title, children }: ISideBlockProps) => {
   return (
     <div className={styles.root}>
-      <Typography variant="h6" classes={{ root: styles.title }}>
+      <Typography variant="h6" className={styles.title}>
         {title}
       </Typography>
       {children}

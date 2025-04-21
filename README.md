@@ -59,7 +59,7 @@ Fullstack блог.
 
 ### Styling and Responsiveness
 
-- Адаптивная вёрстка до 360px ширины экрана
+- Адаптивная вёрстка до 430px ширины экрана
 
 ## How to start project
 
