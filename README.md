@@ -2,6 +2,8 @@
 
 Fullstack блог.
 
+[Backend API](https://github.com/TatyanaZakiryanova/blog-backend)
+
 ## Deployment & Live Demo
 
 [Deploy](https://blogaboutit.netlify.app/)
@@ -21,7 +23,7 @@ Fullstack блог.
 ## Features
 
 - Регистрация и авторизация
-- Создание, обновление и удаление постов
+- Создание, редактирование и удаление постов
 - Форма для создания поста - React-SimpleMDE Editor
 - Загрузка изображений к постам
 - Добавление, редактирование и удаление комментариев к постам
@@ -59,7 +61,7 @@ Fullstack блог.
 
 ### Styling and Responsiveness
 
-- Адаптивная вёрстка до 430px ширины экрана
+- Адаптивная вёрстка до 360px ширины экрана
 
 ## How to start project
 
