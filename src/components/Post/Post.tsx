@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../redux/hooks';
 import { fetchDeletePosts } from '../../redux/posts/asyncActions';
-import { ConfirmDialog } from '../ConfirmDialog';
+import { ConfirmDialog } from '../UI/ConfirmDialog';
 import { UserInfo } from '../UserInfo';
 import styles from './Post.module.scss';
 import { IPostProps } from './types';

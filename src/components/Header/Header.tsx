@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { logout } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { ConfirmDialog } from '../ConfirmDialog';
+import { ConfirmDialog } from '../UI/ConfirmDialog';
 import styles from './Header.module.scss';
 
 export const Header = () => {
