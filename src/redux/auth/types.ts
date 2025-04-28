@@ -7,7 +7,6 @@ export interface AuthUser {
   avatarUrl?: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
   token: string;
 }
 

@@ -6,6 +6,8 @@ export interface Comment {
   text: string;
   post: string | Post;
   user: string | AuthUser;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CommentsState {
