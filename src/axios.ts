@@ -27,7 +27,7 @@ instance.interceptors.response.use(
         isRefreshing = true;
         try {
           const res = await axios.post(
-            'http://localhost:3000/auth/refresh-token',
+            'https://blog-backend-prisma-sv62.onrender.com/auth/refresh-token',
             {},
             { withCredentials: true },
           );
