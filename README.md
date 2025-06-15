@@ -1,16 +1,16 @@
 # Blog
 
-Fullstack блог.
+Fullstack blog app.
 
-[Backend API](https://github.com/TatyanaZakiryanova/blog-backend)
+[Backend API](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
 
-## Deployment & Live Demo
+## Deployment
 
 [Deploy](https://blogaboutit.netlify.app/)
 
-<img src="./public/blogpreview.png" alt="preview" />
+<img src="./public/preview.png" alt="preview" />
 
-## Technologies Used
+## Technologies
 
 - Typescript
 - React
@@ -22,46 +22,49 @@ Fullstack блог.
 
 ## Features
 
-- Регистрация и авторизация
-- Создание, редактирование и удаление постов
-- Форма для создания поста - React-SimpleMDE Editor
-- Загрузка изображений к постам
-- Добавление, редактирование и удаление комментариев к постам
-- Поиск постов по тегам
+- Registration and authentication
+- Creating, editing, and deleting posts
+- Post creation form with React-SimpleMDE Editor
+- Uploading images for posts
+- Adding, editing, and deleting comments
+- Searching posts by tags
 
 ## More details
 
 ### Routing
 
 - Страницы:
-  - Главная
-  - Полный пост (/posts/:id)
-  - Регистрация (/registration)
-  - Авторизация (/login)
-  - Создание поста (/posts/create)
-  - Редактирование поста (/posts/:id/edit)
-  - Поиск постов по тегу (/tag/:tag)
+  - Home
+  - Full post (/posts/:id)
+  - Registration (/registration)
+  - Login (/login)
+  - Create post (/posts/create)
+  - Edit post (/posts/:id/edit)
+  - Search posts by tag (/tag/:tag)
 
 ### State Management
 
-- createAsyncThunk для запросов к API
-- slices для состояний авторизации, постов, комментариев, тегов
+- createAsyncThunk for API requests
+- Redux slices for auth, posts, comments, and tags
 
 ### Loading & Error Handling
 
-- Скелетоны при загрузке постов и блока тегов
-- Alerts при ошибках авторизации, регистрации, загрузки изображений, создания постов
+- Skeletons shown while loading posts and tags
+- Alerts shown on errors: login, registration, image upload, post creation
 
 ### Form Validation
 
-- Валидация форм регистрации и авторизации с React-Hook-Form
-- Регистрация: имя, почта (соответствие формату), пароль (не менее 5 символов)
-- Все поля обязательны для заполнения
-- Кнопка submit отключена при некорректном заполнении полей
+- Form validation with React Hook Form
+- Registration form requires:
+  - Name
+  - Email (must be valid format)
+  - Password (minimum 5 characters)
+- All fields are required
+- Submit button is disabled if fields are invalid
 
 ### Styling and Responsiveness
 
-- Адаптивная вёрстка до 360px ширины экрана
+- Fully responsive layout down to 360px screen width
 
 ## How to start project
 
@@ -88,3 +91,5 @@ production mode:
 ```js
 npm run preview
 ```
+
+🇷🇺 Читать на русском: [README.ru.md](./README.ru.md)
