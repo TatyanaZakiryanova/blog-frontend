@@ -33,7 +33,7 @@ Fullstack blog app.
 
 ### Routing
 
-- Страницы:
+- Pages:
   - Home
   - Full post (/posts/:id)
   - Registration (/registration)
