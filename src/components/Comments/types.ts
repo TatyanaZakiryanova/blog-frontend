@@ -1,13 +1,13 @@
 export interface ICommentUser {
-  _id: string;
+  id: number;
   user: {
-    _id: string;
+    id: number;
     fullName: string;
-    avatarUrl?: string;
+    avatarUrl: string | null;
   };
   text: string;
 }
 
 export interface ICommentsProps {
-  postId: string;
+  postId: number;
 }

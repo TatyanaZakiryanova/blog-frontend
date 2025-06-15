@@ -5,20 +5,25 @@ export enum Status {
 }
 
 export interface Post {
-  _id: string;
+  id: number;
   title: string;
   text: string;
-  imageUrl?: string;
-  user: {
-    _id: string;
-    avatarUrl?: string;
-    fullName: string;
-  };
-  createdAt: string;
-  updatedAt: string;
+  tags: string[];
   viewsCount: number;
   commentsCount: number;
-  tags: string[];
+  imageUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    id: number;
+    fullName: string;
+    avatarUrl: string | null;
+  };
+}
+
+export interface PostResponse {
+  message: string;
+  data: Post[];
 }
 
 export interface PostsState {

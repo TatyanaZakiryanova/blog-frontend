@@ -4,11 +4,11 @@ export interface ICommentItemProps {
   isLoading: boolean;
   isEditing: boolean;
   comment: ICommentUser;
-  userId: string | null;
+  userId: number | null;
   editedText: string;
-  onEditClick: (id: string, text: string) => void;
+  onEditClick: (id: number, text: string) => void;
   onSaveEdit: () => void;
   onCancelEdit: () => void;
-  onDelete: (id: string) => void;
+  onDelete: (id: number) => void;
   onChangeText: (text: string) => void;
 }

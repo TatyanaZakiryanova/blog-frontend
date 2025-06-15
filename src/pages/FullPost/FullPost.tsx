@@ -22,9 +22,9 @@ export const FullPost = () => {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`/posts/${id}`);
-        setFullPost(data);
+        setFullPost(data.data);
       } catch (err) {
-        console.error('Ошибка загрузки поста', err);
+        console.error('Error loading post', err);
         setOpenAlert(true);
       } finally {
         setIsLoading(false);
@@ -48,12 +48,12 @@ export const FullPost = () => {
   return (
     <>
       <Post
-        _id={fullPost._id}
+        id={fullPost.id}
         text={fullPost.text}
         title={fullPost.title}
         imageUrl={fullPost.imageUrl}
         user={{
-          _id: fullPost.user._id,
+          id: fullPost.user.id,
           avatarUrl: fullPost.user.avatarUrl || '',
           fullName: fullPost.user.fullName,
         }}
@@ -63,10 +63,10 @@ export const FullPost = () => {
         commentsCount={fullPost.commentsCount}
         tags={fullPost.tags}
         isFullPost
-        isEditable={userData?._id === fullPost.user._id}
+        isEditable={userData?.id === fullPost.user.id}
       />
 
-      <Comments postId={fullPost._id} />
+      <Comments postId={fullPost.id} />
 
       <Snackbar
         open={openAlert}
@@ -75,7 +75,7 @@ export const FullPost = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
-          Запись не найдена
+          Post not found
         </Alert>
       </Snackbar>
     </>

@@ -15,6 +15,7 @@ import styles from './Registration.module.scss';
 
 export const Registration = () => {
   const isAuth = useAppSelector((state) => state.auth.data);
+  const authError = useAppSelector((state) => state.auth.authError);
   const dispatch = useAppDispatch();
   const [openAlert, setOpenAlert] = useState<boolean>(false);
 
@@ -35,10 +36,10 @@ export const Registration = () => {
     const resultAction = await dispatch(fetchRegister(values));
     if (fetchRegister.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
-      window.localStorage.setItem('token', user.token);
+      window.localStorage.setItem('accessToken', user.accessToken);
     } else {
       setOpenAlert(true);
-      console.error('Ошибка регистрации');
+      console.error('Registration error');
     }
   };
 
@@ -48,20 +49,20 @@ export const Registration = () => {
 
   return (
     <div className={styles.root}>
-      <Typography variant="h6">Регистрация</Typography>
+      <Typography variant="h6">Sign up</Typography>
       <Avatar sx={{ width: 100, height: 100 }} />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <TextField
           className={styles.field}
-          label="Имя"
+          label="Name"
           fullWidth
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
           {...register('fullName', {
-            required: 'Укажите имя',
+            required: 'Enter your name',
             minLength: {
               value: 2,
-              message: 'Имя должно быть не менее 2 символов',
+              message: 'The name must be at least 2 characters long',
             },
           })}
         />
@@ -73,31 +74,31 @@ export const Registration = () => {
           helperText={errors.email?.message}
           autoComplete="email"
           {...register('email', {
-            required: 'Введите почту',
+            required: 'Enter your email',
             pattern: {
               value: /^\S+@\S+$/i,
-              message: 'Некорректный формат почты',
+              message: 'Incorrect email format',
             },
           })}
         />
         <TextField
           className={styles.field}
-          label="Пароль"
+          label="Password"
           fullWidth
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           type="password"
           autoComplete="current-password"
           {...register('password', {
-            required: 'Введите пароль',
+            required: 'Enter your password',
             minLength: {
               value: 5,
-              message: 'Пароль должен быть не менее 5 символов',
+              message: 'Password must be at least 5 characters long',
             },
           })}
         />
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
-          Зарегистрироваться
+          Sign up
         </Button>
       </form>
       <Snackbar
@@ -107,7 +108,7 @@ export const Registration = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
-          Ошибка при регистрации
+          {authError && authError.message}
         </Alert>
       </Snackbar>
     </div>

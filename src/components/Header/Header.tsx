@@ -16,7 +16,7 @@ export const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('accessToken');
   };
 
   return (
@@ -32,10 +32,10 @@ export const Header = () => {
             {isAuth ? (
               <>
                 <Link to="/posts/create">
-                  <Button variant="contained">Создать пост</Button>
+                  <Button variant="contained">Create post</Button>
                 </Link>
                 <Button variant="contained" color="secondary" onClick={() => setConfirmOpen(true)}>
-                  Выйти
+                  Log out
                 </Button>
                 <ConfirmDialog
                   open={confirmOpen}
@@ -44,18 +44,18 @@ export const Header = () => {
                     handleLogout();
                     setConfirmOpen(false);
                   }}
-                  confirmButton="Выйти"
+                  confirmButton="Log out"
                 >
-                  Вы действительно хотите выйти?
+                  Are you sure you want to log out?
                 </ConfirmDialog>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outlined">Войти</Button>
+                  <Button variant="outlined">Log in</Button>
                 </Link>
                 <Link to="/registration">
-                  <Button variant="contained">Зарегистрироваться</Button>
+                  <Button variant="contained">Sign up</Button>
                 </Link>
               </>
             )}

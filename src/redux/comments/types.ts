@@ -1,13 +1,22 @@
-import { AuthUser } from '../auth/types';
-import { Post, Status } from '../posts/types';
+import { Status } from '../posts/types';
 
 export interface Comment {
-  _id: string;
+  id: number;
   text: string;
-  post: string | Post;
-  user: string | AuthUser;
+  postId: number;
+  userId: number;
   createdAt: string;
   updatedAt: string;
+  user: {
+    id: number;
+    fullName: string;
+    avatarUrl: string | null;
+  };
+}
+
+export interface CommentsResponse {
+  message: string;
+  data: Comment[];
 }
 
 export interface CommentsState {

@@ -1,3 +1,3 @@
 export interface ICreateCommentProps {
-  postId: string;
+  postId: number;
 }

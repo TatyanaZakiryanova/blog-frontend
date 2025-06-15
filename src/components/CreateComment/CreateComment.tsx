@@ -19,10 +19,10 @@ export const CreateComment = ({ postId }: ICreateCommentProps) => {
       const { data } = await axios.post(`posts/${postId}/comments`, {
         text: newComment,
       });
-      dispatch(addComment({ ...data, user: userData }));
+      dispatch(addComment(data.data));
       setNewComment('');
     } catch (err) {
-      console.error('Ошибка при создании комментария', err);
+      console.error('Error creating comment', err);
     }
   };
 
@@ -38,12 +38,12 @@ export const CreateComment = ({ postId }: ICreateCommentProps) => {
       {userData ? (
         <>
           <div className={styles.user}>
-            <Avatar src={userData.avatarUrl} alt={userData.fullName} />
+            <Avatar src={userData.avatarUrl || ''} alt={userData.fullName} />
             <div className={styles.userName}>{userData.fullName}</div>
           </div>
           <div className={styles.form}>
             <TextField
-              label="Написать комментарий"
+              label="Leave a comment"
               variant="outlined"
               maxRows={10}
               multiline
@@ -53,12 +53,12 @@ export const CreateComment = ({ postId }: ICreateCommentProps) => {
               onKeyDown={handleKeyDown}
             />
             <Button variant="contained" onClick={handleAddComment} disabled={!newComment}>
-              Отправить
+              Send
             </Button>
           </div>
         </>
       ) : (
-        'Войдите, чтобы оставить комментарий.'
+        'Log in to leave a comment.'
       )}
     </div>
   );

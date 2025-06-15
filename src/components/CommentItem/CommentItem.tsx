@@ -30,7 +30,7 @@ export const CommentItem = ({
         {isLoading ? (
           <Skeleton variant="circular" width={40} height={40} />
         ) : (
-          <Avatar src={comment.user.avatarUrl} alt={comment.user.fullName} />
+          <Avatar src={comment.user.avatarUrl || ''} alt={comment.user.fullName} />
         )}
       </ListItemAvatar>
 
@@ -49,10 +49,10 @@ export const CommentItem = ({
           />
           <div className={styles.editButtons}>
             <Button size="small" onClick={onSaveEdit}>
-              Сохранить
+              Save
             </Button>
             <Button size="small" onClick={onCancelEdit}>
-              Отмена
+              Cancel
             </Button>
           </div>
         </div>
@@ -63,12 +63,12 @@ export const CommentItem = ({
             <Typography variant="body2">{comment.text}</Typography>
           </div>
 
-          {userId === comment.user._id && (
+          {userId === comment.user.id && (
             <div className={styles.commentButtons}>
-              <IconButton onClick={() => onEditClick(comment._id, comment.text)}>
+              <IconButton onClick={() => onEditClick(comment.id, comment.text)}>
                 <EditIcon />
               </IconButton>
-              <IconButton onClick={() => onDelete(comment._id)}>
+              <IconButton onClick={() => onDelete(comment.id)}>
                 <DeleteIcon />
               </IconButton>
             </div>

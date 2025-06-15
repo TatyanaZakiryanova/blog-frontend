@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from '../../axios';
-import { Post } from './types';
+import { Post, PostResponse } from './types';
+import { AxiosResponse } from 'axios';
 
 export const fetchPosts = createAsyncThunk<Post[], { sort?: string; tag?: string }>(
   'posts/fetchPosts',
@@ -10,12 +11,12 @@ export const fetchPosts = createAsyncThunk<Post[], { sort?: string; tag?: string
     if (sort) params.append('sort', sort);
     if (tag) params.append('tag', tag);
 
-    const response = await axios.get<Post[]>(`/posts?${params.toString()}`);
-    return response.data;
+    const response: AxiosResponse<PostResponse> = await axios.get(`/posts?${params.toString()}`);
+    return response.data.data;
   },
 );
 
-export const fetchDeletePosts = createAsyncThunk<string, string>(
+export const fetchDeletePosts = createAsyncThunk<number, number>(
   'posts/fetchDeletePosts',
   async (id) => {
     await axios.delete(`/posts/${id}`);

@@ -22,7 +22,7 @@ export const ConfirmDialog = ({
         {children && <Typography>{children}</Typography>}
       </DialogContent>
       <DialogActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button onClick={onClose}>Отмена</Button>
+        <Button onClick={onClose}>Cancel</Button>
         <Button onClick={onConfirm} color="error" variant="contained">
           {confirmButton}
         </Button>

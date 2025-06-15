@@ -31,7 +31,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchDeletePosts.fulfilled, (state, action) => {
         state.status = Status.SUCCESS;
-        state.items = state.items.filter((post) => post._id !== action.payload);
+        state.items = state.items.filter((post) => post.id !== action.payload);
       })
       .addCase(fetchDeletePosts.rejected, (state) => {
         state.status = Status.ERROR;

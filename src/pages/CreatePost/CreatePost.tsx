@@ -31,14 +31,15 @@ export const CreatePost = () => {
       if (id) {
         try {
           const { data } = await axios.get(`/posts/${id}`);
-          setTitle(data.title);
-          setText(data.text);
-          setTags(data.tags.join(', '));
-          setImageUrl(data.imageUrl);
+          const post = data.data;
+          setTitle(post.title);
+          setText(post.text);
+          setTags(post.tags.join(', '));
+          setImageUrl(post.imageUrl);
         } catch (err) {
-          console.error('Ошибка загрузки поста:', err);
+          console.error('Error loading post:', err);
           setOpenAlert(true);
-          setErrorMessage('Ошибка при загрузке поста');
+          setErrorMessage('Error loading post');
         }
       }
     };
@@ -77,8 +78,8 @@ export const CreatePost = () => {
       setImageUrl(data.url);
     } catch (err) {
       setOpenAlert(true);
-      setErrorMessage('Ошибка при загрузке файла');
-      console.error('Ошибка загрузки файла:', err);
+      setErrorMessage('Error uploading file');
+      console.error('Error uploading file:', err);
     }
   };
 
@@ -97,16 +98,16 @@ export const CreatePost = () => {
         ? await axios.patch(`/posts/${id}`, fields)
         : await axios.post('/posts', fields);
 
-      const postId = id || data._id;
+      const postId = id || data.data.id;
       navigate(`/posts/${postId}`);
     } catch (err) {
       setOpenAlert(true);
-      setErrorMessage('Ошибка при создании поста');
-      console.error('Ошибка при создании поста:', err);
+      setErrorMessage('Error creating post');
+      console.error('Error creating post:', err);
     }
   };
 
-  if (!isAuth && !window.localStorage.getItem('token')) {
+  if (!isAuth && !window.localStorage.getItem('accessToken')) {
     return <Navigate to="/" />;
   }
 
@@ -122,7 +123,7 @@ export const CreatePost = () => {
                 sx={{ padding: 2 }}
                 onClick={() => inputRef.current?.click()}
               >
-                Загрузить превью
+                Download preview
               </Button>
               <input type="file" ref={inputRef} onChange={handleChangeFile} hidden />
             </>
@@ -132,7 +133,7 @@ export const CreatePost = () => {
             <>
               <img className={styles.image} src={imageUrl} alt="Uploaded image" />
               <Button variant="contained" color="error" onClick={() => setImageUrl('')}>
-                Удалить
+                Remove
               </Button>
             </>
           )}
@@ -142,7 +143,7 @@ export const CreatePost = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             variant="standard"
-            placeholder="Заголовок"
+            placeholder="Title"
             fullWidth
           />
           <TextField
@@ -150,7 +151,7 @@ export const CreatePost = () => {
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             variant="standard"
-            placeholder="Теги"
+            placeholder="Tags"
             sx={{ marginBottom: 3 }}
             fullWidth
           />
@@ -158,7 +159,7 @@ export const CreatePost = () => {
 
         <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
         <Button onClick={onSubmit} sx={{ marginTop: 2 }} variant="contained">
-          {id ? 'Сохранить изменения' : 'Опубликовать'}
+          {id ? 'Save changes' : 'Publish'}
         </Button>
       </Paper>
 

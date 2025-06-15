@@ -1,6 +1,6 @@
 export interface IUserInfo {
-  avatarUrl?: string;
+  avatarUrl: string | null;
   fullName: string;
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
 }

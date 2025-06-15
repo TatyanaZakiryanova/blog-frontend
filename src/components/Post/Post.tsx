@@ -16,7 +16,7 @@ import styles from './Post.module.scss';
 import { IPostProps } from './types';
 
 export const Post = ({
-  _id,
+  id,
   title,
   text,
   imageUrl,
@@ -34,7 +34,7 @@ export const Post = ({
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
   const onClickRemove = () => {
-    dispatch(fetchDeletePosts(_id));
+    dispatch(fetchDeletePosts(id));
     navigate('/');
   };
 
@@ -42,7 +42,7 @@ export const Post = ({
     <div className={styles.root}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <Link to={`/posts/${_id}/edit`}>
+          <Link to={`/posts/${id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -65,7 +65,7 @@ export const Post = ({
         <UserInfo {...user} createdAt={createdAt} updatedAt={updatedAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
+            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
           </h2>
 
           <div className={styles.content}>
@@ -86,7 +86,7 @@ export const Post = ({
               <span>{viewsCount}</span>
             </li>
             <li>
-              <Link to={`/posts/${_id}`}>
+              <Link to={`/posts/${id}`}>
                 <div className={styles.commentIcon}>
                   <CommentIcon />
                   <span>{commentsCount}</span>
@@ -103,9 +103,9 @@ export const Post = ({
           onClickRemove();
           setConfirmOpen(false);
         }}
-        confirmButton="Да"
+        confirmButton="Confirm"
       >
-        Вы действительно хотите удалить пост?
+        Are you sure you want to delete this post?
       </ConfirmDialog>
     </div>
   );

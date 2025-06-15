@@ -13,7 +13,7 @@ import { SideBlock } from '../UI/SideBlock';
 import { ICommentsProps, ICommentUser } from './types';
 
 export const Comments = ({ postId }: ICommentsProps) => {
-  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
   const [editedText, setEditedText] = useState<string>('');
   const { items, status } = useAppSelector((state) => state.comments);
   const userData = useAppSelector((state) => state.auth.data);
@@ -23,16 +23,16 @@ export const Comments = ({ postId }: ICommentsProps) => {
     dispatch(fetchComments(postId));
   }, [postId]);
 
-  const handleRemoveComment = async (commentId: string) => {
+  const handleRemoveComment = async (commentId: number) => {
     try {
       await axios.delete(`/comments/${commentId}`);
       dispatch(removeComment(commentId));
     } catch (err) {
-      console.error('Ошибка при удалении комментария', err);
+      console.error('Error deleting comment', err);
     }
   };
 
-  const handleEditClick = (commentId: string, currentText: string) => {
+  const handleEditClick = (commentId: number, currentText: string) => {
     setEditingCommentId(commentId);
     setEditedText(currentText);
   };
@@ -49,21 +49,21 @@ export const Comments = ({ postId }: ICommentsProps) => {
       setEditingCommentId(null);
       setEditedText('');
     } catch (err) {
-      console.error('Ошибка при редактировании комментария', err);
+      console.error('Error editing comment', err);
     }
   };
 
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock title="Comments">
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map(
           (obj: ICommentUser, index: number) => (
-            <React.Fragment key={obj?._id || `skeleton-${index}`}>
+            <React.Fragment key={obj?.id || `skeleton-${index}`}>
               <CommentItem
                 isLoading={status === Status.LOADING}
-                isEditing={editingCommentId === obj?._id}
+                isEditing={editingCommentId === obj?.id}
                 comment={obj}
-                userId={userData?._id ?? null}
+                userId={userData?.id ?? null}
                 editedText={editedText}
                 onEditClick={handleEditClick}
                 onSaveEdit={handleSaveEdit}

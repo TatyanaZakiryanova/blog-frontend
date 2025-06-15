@@ -34,24 +34,24 @@ export const Home = () => {
         onChange={(_, newValue) => setTabIndex(newValue)}
         aria-label="basic tabs example"
       >
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
+        <Tab label="Newest" />
+        <Tab label="Popular" />
       </Tabs>
 
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, md: 8 }}>
           {status === Status.LOADING ? (
             [...Array(5)].map((_, index) => <PostSkeleton key={`skeleton-${index}`} />)
-          ) : status === Status.SUCCESS ? (
+          ) : status === Status.SUCCESS && items.length !== 0 ? (
             items.map((item) => (
               <Post
-                key={item._id}
-                _id={item._id}
+                key={item.id}
+                id={item.id}
                 title={item.title}
                 text={item.text}
                 imageUrl={item.imageUrl || ''}
                 user={{
-                  _id: item.user._id,
+                  id: item.user.id,
                   avatarUrl: item.user.avatarUrl,
                   fullName: item.user.fullName,
                 }}
@@ -61,11 +61,11 @@ export const Home = () => {
                 commentsCount={item.commentsCount}
                 tags={item.tags}
                 isFullPost={false}
-                isEditable={userData?._id === item.user._id}
+                isEditable={userData?.id === item.user.id}
               />
             ))
           ) : (
-            <Box>Посты не найдены</Box>
+            <Box>Posts not found</Box>
           )}
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>

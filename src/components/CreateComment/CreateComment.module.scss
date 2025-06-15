@@ -8,10 +8,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 15px;
+  margin-right: 16px;
+  gap: 4px;
 
   .userName {
     font-size: 12px;
+    text-align: center;
   }
 }
 

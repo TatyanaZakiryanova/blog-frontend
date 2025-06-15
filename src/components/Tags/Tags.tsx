@@ -16,8 +16,11 @@ export const Tags = () => {
   const { items, status } = useAppSelector((state) => state.tags);
 
   return (
-    <SideBlock title="Теги">
-      {status === Status.ERROR && <div className={styles.error}>Ошибка загрузки тегов</div>}
+    <SideBlock title="Tags">
+      {status === Status.ERROR && <div className={styles.error}>Tag loading error</div>}
+      {status === Status.SUCCESS && items.length === 0 && (
+        <div className={styles.error}>No tags yet</div>
+      )}
       <List>
         {(status === Status.LOADING ? [...Array(5)] : items).map((name, index) => (
           <Link

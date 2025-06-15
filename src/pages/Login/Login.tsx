@@ -8,20 +8,21 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 
 import { fetchUserData } from '../../redux/auth/asyncActions';
-import { UserData } from '../../redux/auth/types';
+import { UserDataLogin } from '../../redux/auth/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import styles from './Login.module.scss';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
+  const authError = useAppSelector((state) => state.auth.authError);
   const [openAlert, setOpenAlert] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<UserData>({
+  } = useForm<UserDataLogin>({
     defaultValues: {
       email: '',
       password: '',
@@ -29,14 +30,14 @@ export const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit: SubmitHandler<UserData> = async (values) => {
+  const onSubmit: SubmitHandler<UserDataLogin> = async (values) => {
     const resultAction = await dispatch(fetchUserData(values));
     if (fetchUserData.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
-      window.localStorage.setItem('token', user.token);
+      window.localStorage.setItem('accessToken', user.accessToken);
     } else {
       setOpenAlert(true);
-      console.error('Ошибка авторизации');
+      console.error('Authorization error');
     }
   };
 
@@ -46,7 +47,7 @@ export const Login = () => {
 
   return (
     <div className={styles.root}>
-      <Typography variant="h6">Вход в аккаунт</Typography>
+      <Typography variant="h6">Login</Typography>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <TextField
           className={styles.field}
@@ -56,31 +57,31 @@ export const Login = () => {
           helperText={errors.email?.message}
           autoComplete="email"
           {...register('email', {
-            required: 'Введите почту',
+            required: 'Enter your email',
             pattern: {
               value: /^\S+@\S+$/i,
-              message: 'Некорректный формат почты',
+              message: 'Incorrect email format',
             },
           })}
         />
         <TextField
           className={styles.field}
-          label="Пароль"
+          label="Password"
           fullWidth
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           type="password"
           autoComplete="current-password"
           {...register('password', {
-            required: 'Введите пароль',
+            required: 'Enter your password',
             minLength: {
               value: 5,
-              message: 'Пароль должен быть не менее 5 символов',
+              message: 'Password must be at least 5 characters long',
             },
           })}
         />
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
-          Войти
+          Log in
         </Button>
       </form>
       <Snackbar
@@ -90,7 +91,7 @@ export const Login = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={() => setOpenAlert(false)} severity="error" sx={{ width: '100%' }}>
-          Неверный логин или пароль
+          {authError && authError.message}
         </Alert>
       </Snackbar>
     </div>

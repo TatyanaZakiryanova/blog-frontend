@@ -17,7 +17,7 @@ const commentsSlice = createSlice({
       state.items.push(action.payload);
     },
     removeComment: (state, action) => {
-      state.items = state.items.filter((comment) => comment._id !== action.payload);
+      state.items = state.items.filter((comment) => comment.id !== action.payload);
     },
   },
   extraReducers: (builder) => {
