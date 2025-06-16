@@ -1,6 +1,6 @@
 # Blog
 
-Fullstack блог.
+Frontend для full-stack блога на React.
 
 [Backend API](https://github.com/TatyanaZakiryanova/blog-backend)
 
@@ -12,19 +12,19 @@ Fullstack блог.
 
 ## Technologies
 
-- Typescript
-- React
-- Redux Toolkit
-- Material UI, Sass
-- React Hook Form
-- React-SimpleMDE Editor
-- ESLint, Prettier
+- **Typescript**
+- **React**
+- **Redux Toolkit**
+- **Material UI, Sass**
+- **React Hook Form**
+- **React-SimpleMDE Editor**
+- **ESLint, Prettier**
 
 ## Features
 
 - Регистрация и авторизация
 - Создание, редактирование и удаление постов
-- Форма для создания поста - React-SimpleMDE Editor
+- Форма для создания поста - **React-SimpleMDE Editor**
 - Загрузка изображений к постам
 - Добавление, редактирование и удаление комментариев к постам
 - Поиск постов по тегам
@@ -44,8 +44,8 @@ Fullstack блог.
 
 ### State Management
 
-- createAsyncThunk для запросов к API
-- slices для состояний авторизации, постов, комментариев, тегов
+- **createAsyncThunk** для запросов к API
+- **Redux slices** для состояний авторизации, постов, комментариев, тегов
 
 ### Loading & Error Handling
 
@@ -55,7 +55,10 @@ Fullstack блог.
 ### Form Validation
 
 - Валидация форм регистрации и авторизации с React-Hook-Form
-- Регистрация: имя, почта (соответствие формату), пароль (не менее 5 символов)
+- В форме регистрации обязательны:
+  - Имя
+  - Почта (должна соответствовать формату)
+  - Пароль (минимум 5 символов)
 - Все поля обязательны для заполнения
 - Кнопка submit отключена при некорректном заполнении полей
 
@@ -67,24 +70,24 @@ Fullstack блог.
 
 in the project directory enter:
 
-```js
+```bash
 npm install
 ```
 
 and then run in dev mode:
 
-```js
+```bash
 npm run dev
 ```
 
 build the project:
 
-```js
+```bash
 npm run build
 ```
 
 production mode:
 
-```js
+```bash
 npm run preview
 ```

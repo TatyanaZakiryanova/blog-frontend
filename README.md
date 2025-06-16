@@ -1,6 +1,8 @@
 # Blog
 
-Fullstack blog app.
+Frontend for the full-stack blog app built with React.
+
+[README на русском](./README.ru.md)
 
 [Backend API](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
 
@@ -12,20 +14,20 @@ Fullstack blog app.
 
 ## Technologies
 
-- Typescript
-- React
-- Redux Toolkit
-- Material UI, Sass
-- React Hook Form
-- React-SimpleMDE Editor
-- ESLint, Prettier
+- **Typescript**
+- **React**
+- **Redux Toolkit**
+- **Material UI, Sass**
+- **React Hook Form**
+- **React-SimpleMDE Editor**
+- **ESLint, Prettier**
 
 ## Features
 
 - Registration and authentication
 - Creating, editing, and deleting posts
-- Post creation form with React-SimpleMDE Editor
-- Uploading images for posts
+- Post creation form with **React-SimpleMDE Editor**
+- **Uploading images** for posts
 - Adding, editing, and deleting comments
 - Searching posts by tags
 
@@ -44,8 +46,8 @@ Fullstack blog app.
 
 ### State Management
 
-- createAsyncThunk for API requests
-- Redux slices for auth, posts, comments, and tags
+- **createAsyncThunk** for API requests
+- **Redux slices** for auth, posts, comments, and tags
 
 ### Loading & Error Handling
 
@@ -54,7 +56,7 @@ Fullstack blog app.
 
 ### Form Validation
 
-- Form validation with React Hook Form
+- Form validation with **React Hook Form**
 - Registration form requires:
   - Name
   - Email (must be valid format)
@@ -70,26 +72,24 @@ Fullstack blog app.
 
 in the project directory enter:
 
-```js
+```bash
 npm install
 ```
 
 and then run in dev mode:
 
-```js
+```bash
 npm run dev
 ```
 
 build the project:
 
-```js
+```bash
 npm run build
 ```
 
 production mode:
 
-```js
+```bash
 npm run preview
 ```
-
-🇷🇺 Читать на русском: [README.ru.md](./README.ru.md)
