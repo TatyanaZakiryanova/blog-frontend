@@ -33,6 +33,16 @@ Frontend for the full-stack blog app built with React.
 
 ## More details
 
+### Token handling
+
+**Access tokens are stored in localStorage** and attached to each request via an **Axios request interceptor**.
+
+If a request returns a **401 Unauthorized error** (typically due to an expired access token), the Axios response interceptor:
+
+- Sends a request to **/auth/refresh-token**, using the refreshToken stored in a **secure HttpOnly cookie**.
+- If the refresh is successful, a new access token is **saved in localStorage**, and the original request is **retried automatically with the new token**.
+- `originalRequest.\_retry = true` allows to avoid repeated token refresh for one request.
+
 ### Routing
 
 - Pages:

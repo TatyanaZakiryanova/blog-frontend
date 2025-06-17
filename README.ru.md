@@ -31,6 +31,16 @@ Frontend для full-stack блога на React.
 
 ## More details
 
+### Token handling
+
+**Access tokens хранятся в localStorage** и прикрепляются к каждому запросу через **axios interceptor**.
+
+Если запрос возвращает **ошибку 401 Unauthorized** (обычно из-за истекшего срока действия access token), то axios interceptor:
+
+- Отправляет POST запрос на **/auth/refresh-token**, используя refreshToken, сохраненный в **безопасном httpOnly cookie**.
+- Если обновление прошло успешно, новый токен доступа **сохраняется в localStorage**, а исходный запрос автоматически повторяется с новым токеном.
+- `originalRequest.\_retry = true` позволяет избежать повторного обновления токена для одного запроса.
+
 ### Routing
 
 - Страницы:
