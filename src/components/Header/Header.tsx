@@ -9,15 +9,22 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ConfirmDialog } from '../UI/ConfirmDialog';
 import styles from './Header.module.scss';
 import Avatar from '@mui/material/Avatar';
+import axios from '../../axios';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.auth.data);
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    window.localStorage.removeItem('accessToken');
+  const handleLogout = async () => {
+    try {
+      await axios.post('/auth/logout', {}, { withCredentials: true });
+    } catch (err) {
+      console.error('Logout failed');
+    } finally {
+      localStorage.removeItem('accessToken');
+      dispatch(logout());
+    }
   };
 
   return (
