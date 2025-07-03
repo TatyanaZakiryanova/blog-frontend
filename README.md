@@ -42,6 +42,7 @@ If a request returns a **401 Unauthorized error** (typically due to an expired a
 - Sends a request to **/auth/refresh-token**, using the refreshToken stored in a **secure HttpOnly cookie**.
 - If the refresh is successful, a new access token is **saved in localStorage**, and the original request is **retried automatically with the new token**.
 - `originalRequest._retry = true` allows to avoid repeated token refresh for one request.
+- When logging out, a request is sent to **/auth/logout**, which **clears the httpOnly cookie and removes the accessToken**.
 
 ### Routing
 

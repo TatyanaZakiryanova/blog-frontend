@@ -40,6 +40,7 @@ Frontend для full-stack блога на React.
 - Отправляет POST запрос на **/auth/refresh-token**, используя refreshToken, сохраненный в **безопасном httpOnly cookie**.
 - Если обновление прошло успешно, новый токен доступа **сохраняется в localStorage**, а исходный запрос автоматически повторяется с новым токеном.
 - `originalRequest._retry = true` позволяет избежать повторного обновления токена для одного запроса.
+- При логауте отправляется POST запрос на **/auth/logout**, который **очищает httpOnly cookie и удаляет accessToken**.
 
 ### Routing
 
