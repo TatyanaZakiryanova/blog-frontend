@@ -27,7 +27,7 @@ Frontend for the full-stack blog app built with React.
 - Registration and authentication
 - Creating, editing, and deleting posts
 - Post creation form with **React-SimpleMDE Editor**
-- **Uploading images** for posts
+- **Uploading images** for posts and user avatars
 - Adding, editing, and deleting comments
 - Searching posts by tags
 
@@ -72,6 +72,7 @@ If a request returns a **401 Unauthorized error** (typically due to an expired a
   - Email (must be valid format)
   - Password (minimum 5 characters)
 - All fields are required
+- Ability to upload user avatar
 - Submit button is disabled if fields are invalid
 
 ### Styling and Responsiveness
