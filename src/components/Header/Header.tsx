@@ -8,6 +8,7 @@ import { logout } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { ConfirmDialog } from '../UI/ConfirmDialog';
 import styles from './Header.module.scss';
+import Avatar from '@mui/material/Avatar';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +32,10 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <span>{isAuth.fullName}</span>
+                <span className={styles.user}>
+                  <Avatar src={isAuth.avatarUrl || ''} />
+                  {isAuth.fullName}
+                </span>
                 <Link to="/posts/create">
                   <Button variant="contained">Create post</Button>
                 </Link>
