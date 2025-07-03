@@ -40,7 +40,6 @@ instance.interceptors.response.use(
         } catch (err) {
           console.error('Refresh token error', err);
           localStorage.removeItem('accessToken');
-          window.location.href = '/login';
         } finally {
           isRefreshing = false;
         }
