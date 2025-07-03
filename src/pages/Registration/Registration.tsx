@@ -12,12 +12,14 @@ import { fetchRegister } from '../../redux/auth/asyncActions';
 import { UserDataRegister } from '../../redux/auth/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import styles from './Registration.module.scss';
+import axios from '../../axios';
 
 export const Registration = () => {
+  const [avatarUrl, setAvatarUrl] = useState<string>('');
+  const [openAlert, setOpenAlert] = useState<boolean>(false);
   const isAuth = useAppSelector((state) => state.auth.data);
   const authError = useAppSelector((state) => state.auth.authError);
   const dispatch = useAppDispatch();
-  const [openAlert, setOpenAlert] = useState<boolean>(false);
 
   const {
     register,
@@ -32,8 +34,27 @@ export const Registration = () => {
     mode: 'onChange',
   });
 
+  const handleChangeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const { data } = await axios.post('/upload-avatar', formData);
+      setAvatarUrl(data.url);
+    } catch (err) {
+      console.error('Error uploading avatar:', err);
+    }
+  };
+
   const onSubmit: SubmitHandler<UserDataRegister> = async (values) => {
-    const resultAction = await dispatch(fetchRegister(values));
+    const payload = {
+      ...values,
+      avatarUrl,
+    };
+    const resultAction = await dispatch(fetchRegister(payload));
     if (fetchRegister.fulfilled.match(resultAction)) {
       const user = resultAction.payload;
       window.localStorage.setItem('accessToken', user.accessToken);
@@ -50,8 +71,30 @@ export const Registration = () => {
   return (
     <div className={styles.root}>
       <Typography variant="h6">Sign up</Typography>
-      <Avatar sx={{ width: 100, height: 100 }} />
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <label htmlFor="avatar-upload">
+          <input
+            type="file"
+            id="avatar-upload"
+            hidden
+            onChange={handleChangeFile}
+            accept="image/*"
+          />
+          <Avatar
+            sx={{ width: 100, height: 100, cursor: 'pointer' }}
+            src={avatarUrl || undefined}
+          />
+        </label>
+        {avatarUrl && (
+          <Button
+            variant="contained"
+            sx={{ fontSize: '12px' }}
+            color="error"
+            onClick={() => setAvatarUrl('')}
+          >
+            Remove
+          </Button>
+        )}
         <TextField
           className={styles.field}
           label="Name"
