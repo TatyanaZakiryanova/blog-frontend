@@ -1,18 +1,24 @@
 # Blog
 
-Frontend for the full-stack blog app built with React.
+Frontend for the full-stack blog app built with React, Redux and TypeScript.
+
+⚠️ _Please note: free Render server may take up to 1 minute to wake up on first request._
+
+## 🔗 Project links
 
 [README на русском](./README.ru.md)
 
-[Backend API](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
+[Backend repository](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
 
-## Deployment
+## 🌐 Deployment
 
-[Deploy](https://blogaboutit.netlify.app/)
+[Deployment](https://blogaboutit.netlify.app/)
 
-<img src="./public/preview.png" alt="preview" />
+## 🎥 VIDEO DEMO
 
-## Technologies
+[demo]
+
+## 🛠️ Technologies
 
 - **Typescript**
 - **React**
@@ -21,8 +27,9 @@ Frontend for the full-stack blog app built with React.
 - **React Hook Form**
 - **React-SimpleMDE Editor**
 - **ESLint, Prettier**
+- **Netlify**
 
-## Features
+## 💻 Features
 
 - Registration and authentication
 - Creating, editing, and deleting posts
@@ -55,17 +62,17 @@ If a request returns a **401 Unauthorized error** (typically due to an expired a
   - Edit post (/posts/:id/edit)
   - Search posts by tag (/tag/:tag)
 
-### State Management
+### State management
 
 - **createAsyncThunk** for API requests
 - **Redux slices** for auth, posts, comments, and tags
 
-### Loading & Error Handling
+### Loading & error handling
 
 - Skeletons shown while loading posts and tags
 - Alerts shown on errors: login, registration, image upload, post creation
 
-### Form Validation
+### Form validation
 
 - Form validation with **React Hook Form**
 - Registration form requires:
@@ -76,11 +83,28 @@ If a request returns a **401 Unauthorized error** (typically due to an expired a
 - Ability to upload user avatar
 - Submit button is disabled if fields are invalid
 
-### Styling and Responsiveness
+### Styling and responsiveness
 
 - Fully responsive layout down to 360px screen width
 
-## How to start project
+## 📁 Architecture
+
+```bash
+public/
+src/
+├── components/
+├── pages/
+├── redux/
+├── styles/
+```
+
+## 🪄 How to start project
+
+clone the repository:
+
+```bash
+git clone
+```
 
 in the project directory enter:
 
