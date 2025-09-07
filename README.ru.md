@@ -1,14 +1,16 @@
-# Blog
+# Fullstack Blog
 
-Frontend для full-stack блога на React, Redux и TypeScript.
+**Frontend для full-stack блога на React, Redux и TypeScript.** Включает **автообновление refresh-токенов**, **markdown-редактор** для создания постов, **редактирование** постов и комментариев, **загрузку изображений**.
 
 ⚠️ _Первая загрузка бесплатного сервера на Render может занять до 1 минуты. Пожалуйста, подождите_
 
-[Backend репозиторий](https://github.com/TatyanaZakiryanova/blog-backend)
+## 🔗 Quick Links
 
-## 🌐 Deployment
+[**Deployment**](https://blog-frontend-rho-bice.vercel.app/)
 
-[Deployment](https://blogaboutit.netlify.app/)
+[**Backend repository**](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
+
+[**Backend Swagger docs**](https://blog-backend-prisma-sv62.onrender.com/api-docs/) _(используйте `/auth/register` для получения JWT токена)_
 
 ## 🎥 VIDEO DEMO
 
@@ -23,6 +25,7 @@ Frontend для full-stack блога на React, Redux и TypeScript.
 - **React Hook Form**
 - **React-SimpleMDE Editor**
 - **ESLint, Prettier**
+- **Vercel**
 
 ## 💻 Features
 

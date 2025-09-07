@@ -1,18 +1,18 @@
-# Blog
+# Fullstack Blog
 
-Frontend for the full-stack blog app built with React, Redux and TypeScript.
+**Frontend for the full-stack blog app built with React, Redux and TypeScript.** Implements **auto-refresh of JWT tokens**, **markdown editor**, **editing** posts & comments, **image uploads**.
 
 ⚠️ _Please note: free Render server may take up to 1 minute to wake up on first request._
 
-## 🔗 Project links
+## 🔗 Quick Links
 
-[README на русском](./README.ru.md)
+[**Deployment**](https://blog-frontend-rho-bice.vercel.app/)
 
-[Backend repository](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
+[**Backend repository**](https://github.com/TatyanaZakiryanova/blog-backend-prisma)
 
-## 🌐 Deployment
+[**Backend Swagger docs**](https://blog-backend-prisma-sv62.onrender.com/api-docs/) _(use `/auth/register` to get tokens)_
 
-[Deployment](https://blogaboutit.netlify.app/)
+[**README на русском**](./README.ru.md)
 
 ## 🎥 VIDEO DEMO
 
@@ -27,7 +27,7 @@ Frontend for the full-stack blog app built with React, Redux and TypeScript.
 - **React Hook Form**
 - **React-SimpleMDE Editor**
 - **ESLint, Prettier**
-- **Netlify**
+- **Vercel**
 
 ## 💻 Features
 

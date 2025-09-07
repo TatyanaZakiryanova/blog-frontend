@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
@@ -80,10 +81,16 @@ export const Registration = () => {
             onChange={handleChangeFile}
             accept="image/*"
           />
-          <Avatar
-            sx={{ width: 100, height: 100, cursor: 'pointer' }}
-            src={avatarUrl || undefined}
-          />
+          <div className={styles.avatar}>
+            <Avatar
+              sx={{ width: 100, height: 100, cursor: 'pointer' }}
+              src={avatarUrl || undefined}
+            />
+            <div className={styles.overlay}>
+              <PhotoCameraIcon fontSize="small" />
+              <Typography variant="caption">Change</Typography>
+            </div>
+          </div>
         </label>
         {avatarUrl && (
           <Button

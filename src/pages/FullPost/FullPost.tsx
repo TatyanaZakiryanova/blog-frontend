@@ -1,5 +1,4 @@
 import Alert from '@mui/material/Alert';
-import Skeleton from '@mui/material/Skeleton';
 import Snackbar from '@mui/material/Snackbar';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { Comments } from '../../components/Comments';
 import { Post } from '../../components/Post';
 import { IPostProps } from '../../components/Post/types';
 import { useAppSelector } from '../../redux/hooks';
+import { PostSkeleton } from '../../components/Post/Skeleton/Skeleton';
 
 export const FullPost = () => {
   const [fullPost, setFullPost] = useState<IPostProps | null>(null);
@@ -37,12 +37,7 @@ export const FullPost = () => {
   }, []);
 
   if (isLoading || !fullPost) {
-    return (
-      <Skeleton
-        variant="rectangular"
-        sx={{ width: '100%', height: '300px', borderRadius: '6px' }}
-      />
-    );
+    return <PostSkeleton />;
   }
 
   return (
